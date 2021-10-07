@@ -21,5 +21,11 @@
                 </ul>
             </div>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{route('contoh.index')}}">
+                <i class="icon-grid menu-icon"></i>
+                <span class="menu-title">Contoh</span>
+            </a>
+        </li>
     </ul>
 </nav>

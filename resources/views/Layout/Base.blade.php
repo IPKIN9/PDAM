@@ -131,6 +131,7 @@
 
     <script src="{{ asset('assets/js/dashboard.js') }}"></script>
     <script src="{{ asset('assets/js/Chart.roundedBarCharts.js') }}"></script>
+    @yield('js')
 </body>
 
 </html>
