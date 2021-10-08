@@ -15,6 +15,7 @@ class CreateGolonganTable extends Migration
     {
         Schema::create('golongan', function (Blueprint $table) {
             $table->id();
+            $table->string('kode_golongan');
             $table->string('golongan');
             $table->timestamps();
         });

@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/vertical-layout-light/style.css') }}">
     <!-- endinject -->
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.7/dist/sweetalert2.css"
+        integrity="sha256-YSIvm6MoLK0/S3MKxMMBEMUq39D2Z6E62AcPUdCSI0Q=" crossorigin="anonymous">
 </head>
 
 <body>
@@ -132,7 +134,12 @@
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    Modal body..
+                    <form action="" id="form-insert">
+                        @csrf
+                        <div class="form-insert-div">
+
+                        </div>
+                    </form>
                 </div>
 
                 <!-- Modal footer -->
@@ -163,6 +170,8 @@
 
     <script src="{{ asset('assets/js/dashboard.js') }}"></script>
     <script src="{{ asset('assets/js/Chart.roundedBarCharts.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.7/dist/sweetalert2.js"
+        integrity="sha256-zR3IcBDIaMoAiI5kvEDeGB4YGM7v3rppFj/1p0RkKCI=" crossorigin="anonymous"></script>
     @yield('js')
 </body>
 
