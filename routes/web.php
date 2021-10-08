@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Cms\GolonganController;
+use App\Http\Controllers\Cms\KaryawanController;
 use App\Http\Controllers\Cms\PendaftaranController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,3 +30,12 @@ Route::prefix('/golongan')->group(function () {
 Route::prefix('/daftar')->group(function () {
     Route::get('index', [PendaftaranController::class, 'index'])->name('daftar.index');
 });
+
+Route::prefix('/karyawan')->group(function () {
+    Route::get('index', [KaryawanController::class, 'index'])->name('karyawan.index');
+        Route::post('insert', [KaryawanController::class, 'insert'])->name('karyawan.insert');
+        Route::get('getspecdata/{id}', [KaryawanController::class, 'edit']);
+        Route::post('update', [KaryawanController::class, 'update'])->name('karyawan.update');
+        Route::delete('deletespecdata/{id}', [KaryawanController::class, 'delete']);
+});
+
