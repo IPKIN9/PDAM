@@ -155,41 +155,32 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Nama Lengkap</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="nama">
-                                    @error('nama')
-                                    <p class="text-danger">{{ $message }}</p>
-                                    @enderror
+                                    <input type="hidden" class="form-control" name="id" id="id" value="`+data.id+`">
+                                    <input type="text" class="form-control" name="nama" id="nama" value="`+data.nama+`">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Pangkat</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="pangkat" id="pangkat" value="`+data.pangkat+`">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Jabatan</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="jabatan" id="jabatan" value="`+data.jabatan+`">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group row">
-                                <label class="col-sm-4 col-form-label">Pangkat</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" name="pangkat">
-                                    @error('pangkat')
-                                    <p class="text-danger">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group row">
-                                <label class="col-sm-4 col-form-label">Jabatan</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" name="jabatan">
-                                    @error('jabatan')
-                                    <p class="text-danger">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
                 </div>
                 `);
                 $('#univModal').modal('show');
-                $('#form-edit').attr('action',`{{route('karyawan.update')}}`);
+                $('#form-insert').attr('action',`{{route('karyawan.update')}}`);
             });
         });
 

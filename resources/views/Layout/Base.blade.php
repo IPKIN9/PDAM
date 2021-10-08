@@ -133,19 +133,20 @@
                 </div>
 
                 <!-- Modal body -->
-                <div class="modal-body">
-                    <form action="" id="form-insert">
-                        @csrf
+                <form action="" id="form-insert" method="POST">
+                    @csrf
+                    <div class="modal-body">
                         <div class="form-insert-div">
 
                         </div>
-                    </form>
-                </div>
+                    </div>
 
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
 
             </div>
         </div>
