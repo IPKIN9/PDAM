@@ -16,8 +16,6 @@ class GolonganRequest extends FormRequest
     {
         return [
             'golongan' => 'required',
-            'unit' => 'required',
-            'blok_konsumsi' => 'required',
             'sub_golongan' => 'required',
             'tarif_air' => 'required',
             'biaya_beban' => 'required'

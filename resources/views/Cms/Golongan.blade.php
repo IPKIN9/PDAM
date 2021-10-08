@@ -33,15 +33,21 @@
                                     <tr>
                                         <th>No.</th>
                                         <th>Golongan</th>
-                                        <th>Jumlah Data</th>
+                                        <th>Unit</th>
+                                        <th>Blok Konsumsi</th>
                                         <th>Tindakan</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php
+                                    $no = 1;
+                                    @endphp
+                                    @foreach ($data['golongan'] as $d)
                                     <tr>
-                                        <td style="width: 30px;">1</td>
-                                        <td>Herman Beck</td>
-                                        <td>$ 77.99</td>
+                                        <td style="width: 30px;">{{$no++}}</td>
+                                        <td>{{$d->golongan}}</td>
+                                        <td>{{$d->unit}}</td>
+                                        <td>{{$d->blok_konsumsi}}</td>
                                         <td class="text-center" style="width: 100px;">
                                             <button type="button" id="detail-data"
                                                 class="btn btn-secondary btn-rounded btn-icon">
@@ -53,6 +59,7 @@
                                             </button>
                                         </td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -89,7 +96,7 @@
                                             </div>
                                         </div>
 
-                                        <input type="hidden" id="opt-add-golongan" value="false">
+                                        <input type="hidden" name="confir" id="opt-add-golongan" value="false">
 
                                         <div class="col-md-6 text-left" style="margin-top: 5px;">
                                             <button type="button" id="add-data"
@@ -191,7 +198,7 @@
                 <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Unit</label>
                     <div class="col-sm-9">
-                        <select name="unit" class="form-control form-control-sm mt-2">
+                        <select required name="unit" class="form-control form-control-sm mt-2">
                             <option selected disabled>- Select -</option>
                             <option value="unit a">Unit A</option>
                             <option value="unit b">Unit B</option>
@@ -206,7 +213,7 @@
                 <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Blok Kosumsi</label>
                     <div class="col-sm-9">
-                        <select name="blok_konsumsi"
+                        <select required name="blok_konsumsi"
                             class="form-control form-control-sm mt-2">
                             <option selected disabled>- Select -</option>
                             <option value="blok 1 - 10">Blok 1 - 10</option>
