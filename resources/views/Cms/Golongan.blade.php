@@ -44,7 +44,7 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>
+                                        <td style="width: 30px;">
                                             1
                                         </td>
                                         <td>
@@ -54,10 +54,12 @@
                                             $ 77.99
                                         </td>
                                         <td class="text-center" style="width: 100px;">
-                                            <button type="button" class="btn btn-secondary btn-rounded btn-icon">
+                                            <button type="button" id="detail-data"
+                                                class="btn btn-secondary btn-rounded btn-icon">
                                                 <i class="fas fa-info"></i>
                                             </button>
-                                            <button type="button" class="btn btn-danger btn-rounded btn-icon ml-1">
+                                            <button type="button" id="hapus-data"
+                                                class="btn btn-danger btn-rounded btn-icon ml-1">
                                                 <i class="fas fa-trash"></i>
                                             </button>
                                         </td>
@@ -83,7 +85,8 @@
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Golongan</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" class="form-control form-control-sm mt-2"
+                                                        placeholder="Insert here">
                                                 </div>
                                             </div>
                                         </div>
@@ -94,7 +97,8 @@
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Sub Golongan</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" class="form-control form-control-sm mt-2"
+                                                        placeholder="Insert here">
                                                 </div>
                                             </div>
                                         </div>
@@ -102,7 +106,8 @@
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Jumlah Rekening Air</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" class="form-control form-control-sm mt-2"
+                                                        placeholder="Insert here">
                                                 </div>
                                             </div>
                                         </div>
@@ -112,7 +117,8 @@
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Kuota Air M<sup>3</sup></label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" class="form-control form-control-sm mt-2"
+                                                        placeholder="Insert here">
                                                 </div>
                                             </div>
                                         </div>
@@ -120,7 +126,8 @@
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Jumlah Tagihan</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" class="form-control form-control-sm mt-2"
+                                                        placeholder="Insert here">
                                                 </div>
                                             </div>
                                         </div>
@@ -130,7 +137,8 @@
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Harga Air</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" class="form-control form-control-sm mt-2"
+                                                        placeholder="Insert here">
                                                 </div>
                                             </div>
                                         </div>
@@ -138,7 +146,8 @@
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Jasa Adm</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" class="form-control form-control-sm mt-2"
+                                                        placeholder="Insert here">
                                                 </div>
                                             </div>
                                         </div>
@@ -148,15 +157,18 @@
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Data / M <sup> 3</sup></label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" class="form-control form-control-sm mt-2"
+                                                        placeholder="Insert here">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label">Harga Rata"</label>
+                                                <label class="col-sm-3 col-form-label"><code>Harga Rata"</code></label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" readonly
+                                                        class="form-control form-control-sm mt-2"
+                                                        placeholder="Insert here">
                                                 </div>
                                             </div>
                                         </div>
@@ -188,6 +200,11 @@
         });
 
         $('#tabel-golongan').DataTable();
+
+        $(document).on('click', '#detail-data', function()
+        {
+            $('#univModal').modal('show');
+        });
     });
 </script>
 @endsection
