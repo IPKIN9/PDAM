@@ -27,6 +27,7 @@ Route::get('/contoh', function () {
 Route::prefix('/golongan')->group(function () {
     Route::get('index', [GolonganController::class, 'index'])->name('golongan.index');
     Route::post('create', [GolonganController::class, 'create'])->name('golongan.create');
+    Route::get('getSpecData/{id}', [GolonganController::class, 'detail']);
 });
 
 Route::prefix('/daftar')->group(function () {
@@ -35,9 +36,8 @@ Route::prefix('/daftar')->group(function () {
 
 Route::prefix('/karyawan')->group(function () {
     Route::get('index', [KaryawanController::class, 'index'])->name('karyawan.index');
-        Route::post('insert', [KaryawanController::class, 'insert'])->name('karyawan.insert');
-        Route::get('getspecdata/{id}', [KaryawanController::class, 'edit']);
-        Route::post('update', [KaryawanController::class, 'update'])->name('karyawan.update');
-        Route::delete('deletespecdata/{id}', [KaryawanController::class, 'delete']);
+    Route::post('insert', [KaryawanController::class, 'insert'])->name('karyawan.insert');
+    Route::get('getspecdata/{id}', [KaryawanController::class, 'edit']);
+    Route::post('update', [KaryawanController::class, 'update'])->name('karyawan.update');
+    Route::delete('deletespecdata/{id}', [KaryawanController::class, 'delete']);
 });
-

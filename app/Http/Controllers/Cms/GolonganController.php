@@ -62,6 +62,11 @@ class GolonganController extends Controller
 
     public function detail($id)
     {
+        $data = array(
+            'golongan' => GolonganModel::where('id', $id)->first(),
+            'detail' => DetailGolonganModel::where('id_golongan', $id)->get()
+        );
+        return response()->json($data);
     }
 
     public function update(GolonganRequest $request)
