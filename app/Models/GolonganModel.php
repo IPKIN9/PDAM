@@ -12,6 +12,8 @@ class GolonganModel extends Model
     protected $fillable = [
         'id',
         'golongan',
+        'unit',
+        'blok_konsumsi',
         'created_at',
         'updated_at',
     ];
