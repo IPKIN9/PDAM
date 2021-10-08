@@ -17,7 +17,7 @@ class CreateBangunanTable extends Migration
             $table->id();
             $table->string('kode_bangunan');
             $table->string('no_sambungan');
-            $table->decimal('luas_tanah');
+            $table->bigInteger('luas_tanah');
             $table->string('jenis_bangunan');
             $table->string('status_bangunan');
             $table->string('perumahan_sambungan');

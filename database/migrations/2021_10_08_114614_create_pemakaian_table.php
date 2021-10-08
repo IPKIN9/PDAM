@@ -18,7 +18,7 @@ class CreatePemakaianTable extends Migration
             $table->foreignId('id_user')->constrained('users');
             $table->foreignId('id_pelanggan')->constrained('pelanggan');
             $table->string('kode_pemakaian');
-            $table->decimal('jumlah_pemakaian');
+            $table->bigInteger('jumlah_pemakaian');
             $table->timestamps();
         });
     }

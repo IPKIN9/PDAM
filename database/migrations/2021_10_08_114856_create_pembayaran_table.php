@@ -18,9 +18,9 @@ class CreatePembayaranTable extends Migration
             $table->foreignId('id_user')->constrained('users');
             $table->foreignId('id_pelanggan')->constrained('pelanggan');
             $table->foreignId('id_pemakaian')->constrained('pemakaian');
-            $table->decimal('ppa');
-            $table->decimal('denda');
-            $table->decimal('total');
+            $table->bigInteger('ppa');
+            $table->bigInteger('denda');
+            $table->bigInteger('total');
             $table->boolean('telah_dibayar');
             $table->date('tgl_pembayaran')->nullable();
             $table->timestamps();
