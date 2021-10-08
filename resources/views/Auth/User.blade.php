@@ -22,21 +22,19 @@
                         @if ($errors->any())
                         <p class="text-danger">Periksa apakah formulir terisi semua!</p>
                         @endif
-                        <h3 class="">Tabel Data karyawan</h3>
+                        <h3 class="">Tabel Data User</h3>
                         <p class="card-description">
                             Harap diperhatikan formulir tidak boleh kosong saat melakukan pengeditan data
-                            <code>Karyawan</code>
+                            <code>User</code>
                         </p>
                         <div class="table-responsive pt-3">
-                            <table id="tabel-karyawan" class="table table-bordered">
+                            <table id="tabel-user" class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Nama</th>
-                                        <th>Pangkat</th>
-                                        <th>Jabatan</th>
-                                        <th>Created At</th>
-                                        <th>Updated At</th>
+                                        <th>Karyawan</th>
+                                        <th>Username</th>
+                                        <th>Password</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -47,11 +45,9 @@
                                     @foreach ($data ['all'] as $d)
                                     <tr>
                                         <td>{{$no++}}</td>
-                                        <td>{{$d->nama}}</td>
-                                        <td>{{$d->pangkat}}</td>
-                                        <td>{{$d->jabatan}}</td>
-                                        <td>{{$d->created_at}}</td>
-                                        <td>{{$d->updated_at}}</td>
+                                        <td>{{$d->karyawan_role->nama}}</td>
+                                        <td>{{$d->username}}</td>
+                                        <td>{{$d->password}}</td>
                                         <td class="text-center" style="width: 100px;">
                                             <button type="button" class="btn btn-secondary btn-rounded btn-icon"
                                                 data-id="{{$d->id}}" id="btn-edit">
@@ -76,15 +72,31 @@
                         </div>
                         <div class="row ml-3 mr-3">
                             <div class="col-md-12">
-                                <form class="form-sample" method="POST" action="{{route('karyawan.insert')}}">
+                                <form class="form-sample" method="POST" action="{{route('user.insert')}}">
                                     @csrf
                                     <div class="row mt-4">
-                                        <div class="col-md-12">
+                                        <div class="col-md-6">
                                             <div class="form-group row">
-                                                <label class="col-sm-2 col-form-label">Nama Lengkap</label>
-                                                <div class="col-sm-10">
-                                                    <input type="text" class="form-control" name="nama">
-                                                    @error('nama')
+                                                <label class="col-sm-4 col-form-label">Karyawan</label>
+                                                <div class="col-sm-8">
+                                                    <select class="form-control" name="id_karyawan">
+                                                        <option disabled selected>Pilih Karyawan</option>
+                                                        @foreach ($data ['kry'] as $d)
+                                                        <option value="{{$d->id}}">{{$d->nama}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('id_karyawan')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-4 col-form-label">Username</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" name="username">
+                                                    @error('username')
                                                     <p class="text-danger">{{ $message }}</p>
                                                     @enderror
                                                 </div>
@@ -94,10 +106,10 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group row">
-                                                <label class="col-sm-4 col-form-label">Pangkat</label>
+                                                <label class="col-sm-4 col-form-label">Password</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" name="pangkat">
-                                                    @error('pangkat')
+                                                    <input type="password" class="form-control" name="password">
+                                                    @error('password')
                                                     <p class="text-danger">{{ $message }}</p>
                                                     @enderror
                                                 </div>
@@ -105,10 +117,11 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group row">
-                                                <label class="col-sm-4 col-form-label">Jabatan</label>
+                                                <label class="col-sm-4 col-form-label">Confirmation Password</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" name="jabatan">
-                                                    @error('jabatan')
+                                                    <input type="password" class="form-control"
+                                                        name="password_confirmation">
+                                                    @error('password_confirmation')
                                                     <p class="text-danger">{{ $message }}</p>
                                                     @enderror
                                                 </div>
@@ -141,7 +154,7 @@
             }
         });
 
-        $('#tabel-karyawan').DataTable();
+        $('#tabel-user').DataTable();
         $(document).on('click', '#btn-edit', function() {
             let dataId = $(this).data('id');
             let url = "getspecdata/" + dataId;
@@ -150,37 +163,50 @@
                 $('.modal-body').html('');
                 $('.modal-body').append(`
                 <div class="row">
-                    <div class="row mt-6 ml-5">
-                        <div class="col-md-12">
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Nama Lengkap</label>
-                                <div class="col-sm-10">
-                                    <input type="hidden" class="form-control" name="id" id="id" value="`+data.id+`">
-                                    <input type="text" class="form-control" name="nama" id="nama" value="`+data.nama+`">
-                                </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Karyawan</label>
+                            <div class="col-sm-8">
+                                <input type="hidden" class="form-control" name="id" id="id" value="`+data.id+`">
+                                <select class="form-control" id="id_karyawan" name="id_karyawan">
+                                    <option disabled selected>Pilih Karyawan</option>
+                                    @foreach ($data ['kry'] as $d)
+                                    <option value="{{$d->id}}">{{$d->nama}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
-                        <div class="col-md-12">
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Pangkat</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="pangkat" id="pangkat" value="`+data.pangkat+`">
-                                </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Username</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="username" id="username" value="`+data.username+`">
                             </div>
                         </div>
-                        <div class="col-md-12">
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Jabatan</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="jabatan" id="jabatan" value="`+data.jabatan+`">
-                                </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Password</label>
+                            <div class="col-sm-8">
+                                <input type="password" class="form-control" name="password">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Confirmation Password</label>
+                            <div class="col-sm-8">
+                                <input type="password" class="form-control"
+                                    name="password_confirmation">
                             </div>
                         </div>
                     </div>
                 </div>
                 `);
                 $('#univModal').modal('show');
-                $('#form-insert').attr('action',`{{route('karyawan.update')}}`);
+                $('#form-insert').attr('action',`{{route('user.update')}}`);
+                $('#id_karyawan').val(data.id_karyawan);
             });
         });
 
