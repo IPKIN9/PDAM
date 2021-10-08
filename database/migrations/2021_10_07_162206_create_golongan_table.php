@@ -17,6 +17,8 @@ class CreateGolonganTable extends Migration
             $table->id();
             $table->string('kode_golongan');
             $table->string('golongan');
+            $table->string('unit');
+            $table->string('blok_konsumsi');
             $table->timestamps();
         });
     }
