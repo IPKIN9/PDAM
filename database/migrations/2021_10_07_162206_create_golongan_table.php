@@ -16,6 +16,8 @@ class CreateGolonganTable extends Migration
         Schema::create('golongan', function (Blueprint $table) {
             $table->id();
             $table->string('golongan');
+            $table->string('unit');
+            $table->string('blok_konsumsi');
             $table->timestamps();
         });
     }
