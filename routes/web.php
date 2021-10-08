@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Cms\GolonganController;
+use App\Http\Controllers\Cms\PendaftaranController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,3 +21,11 @@ Route::get('/', function () {
 Route::get('/contoh', function () {
     return view('Contoh.Contoh');
 })->name('contoh.index');
+
+Route::prefix('/golongan')->group(function () {
+    Route::get('index', [GolonganController::class, 'index'])->name('golongan.index');
+});
+
+Route::prefix('/daftar')->group(function () {
+    Route::get('index', [PendaftaranController::class, 'index'])->name('daftar.index');
+});
