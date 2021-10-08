@@ -16,6 +16,7 @@ class CreateBangunanTable extends Migration
         Schema::create('bangunan', function (Blueprint $table) {
             $table->id();
             $table->string('kode_bangunan');
+            $table->string('no_sambungan');
             $table->decimal('luas_tanah');
             $table->string('jenis_bangunan');
             $table->string('status_bangunan');

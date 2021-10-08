@@ -15,7 +15,8 @@ class CreateDetailGolonganTable extends Migration
     {
         Schema::create('detail_golongan', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_golongan')->nullable()->constrained('golongan');
+            $table->foreignId('id_golongan')->constrained('golongan');
+            $table->string('sub_golongan');
             $table->decimal('jumlah_rek_air');
             $table->decimal('meter');
             $table->decimal('jumlah_tagihan');

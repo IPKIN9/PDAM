@@ -12,6 +12,7 @@ class BangunanModel extends Model
     protected $fillable = [
         'id',
         'kode_bangunan',
+        'no_sambungan',
         'luas_tanah',
         'jenis_bangunan',
         'status_bangunan',
@@ -19,7 +20,7 @@ class BangunanModel extends Model
         'sumber_air',
         'pmj',
         'nama_sebelumnya',
-        'no_sambungan',
+        'no_sebelumnya',
         'created_at',
         'updated_at',
     ];

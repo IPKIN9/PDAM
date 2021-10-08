@@ -12,6 +12,7 @@ class DetailGolonganModel extends Model
     protected $fillable = [
         'id',
         'id_golongan',
+        'sub_golongan',
         'jumlah_rek_air',
         'meter',
         'jumlah_tagihan',

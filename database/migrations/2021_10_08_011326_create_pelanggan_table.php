@@ -16,14 +16,15 @@ class CreatePelangganTable extends Migration
         Schema::create('pelanggan', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_bangunan')->nullable()->constrained('bangunan');
+            $table->foreignId('id_golongan')->nullable()->constrained('golongan');
             $table->string('status');
             $table->string('nama');
-            $table->string('alamat');
+            $table->text('alamat');
             $table->string('rt_rw');
             $table->string('kecamatan');
             $table->string('kabupaten');
             $table->string('no_pendaftaran');
-            $table->string('alamat_sambungan');
+            $table->text('alamat_sambungan');
             $table->string('jumlah penghuni');
             $table->timestamps();
         });

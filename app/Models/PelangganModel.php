@@ -12,6 +12,7 @@ class PelangganModel extends Model
     protected $fillable =[
         'id',
         'id_bangunan',
+        'id_golongan',
         'status',
         'nama',
         'alamat',
@@ -28,5 +29,9 @@ class PelangganModel extends Model
     public function bangunan_role()
     {
        return $this->belongsTo(BangunanModel::class, 'id_bangunan');
+    }
+    public function golongan_role()
+    {
+       return $this->belongsTo(GolonganModel::class, 'id_golongan');
     }
 }
