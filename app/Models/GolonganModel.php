@@ -11,6 +11,7 @@ class GolonganModel extends Model
     protected $table = 'golongan';
     protected $fillable = [
         'id',
+        'kode_golongan',
         'golongan',
         'unit',
         'blok_konsumsi',

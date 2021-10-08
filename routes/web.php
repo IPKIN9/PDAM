@@ -3,6 +3,7 @@
 use App\Http\Controllers\Cms\GolonganController;
 use App\Http\Controllers\Cms\KaryawanController;
 use App\Http\Controllers\Cms\PendaftaranController;
+use App\Models\GolonganModel;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +26,7 @@ Route::get('/contoh', function () {
 
 Route::prefix('/golongan')->group(function () {
     Route::get('index', [GolonganController::class, 'index'])->name('golongan.index');
+    Route::post('create', [GolonganController::class, 'create'])->name('golongan.create');
 });
 
 Route::prefix('/daftar')->group(function () {
