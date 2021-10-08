@@ -3,6 +3,7 @@
 use App\Http\Controllers\Cms\GolonganController;
 use App\Http\Controllers\Cms\KaryawanController;
 use App\Http\Controllers\Cms\PendaftaranController;
+use App\Http\Controllers\Auth\UserController;
 use App\Models\GolonganModel;
 use Illuminate\Support\Facades\Route;
 
@@ -41,3 +42,14 @@ Route::prefix('/karyawan')->group(function () {
     Route::post('update', [KaryawanController::class, 'update'])->name('karyawan.update');
     Route::delete('deletespecdata/{id}', [KaryawanController::class, 'delete']);
 });
+<<<<<<< HEAD
+=======
+Route::prefix('/user')->group(function () {
+    Route::get('index', [UserController::class, 'index'])->name('user.index');
+        Route::post('insert', [UserController::class, 'insert'])->name('user.insert');
+        Route::get('getspecdata/{id}', [UserController::class, 'edit']);
+        Route::post('update', [UserController::class, 'update'])->name('user.update');
+        Route::delete('deletespecdata/{id}', [UserController::class, 'delete']);
+});
+
+>>>>>>> b46efd75bdb4c956ee556d32ad3e4ed1bfdfb125
