@@ -53,7 +53,7 @@
                                                 class="btn btn-secondary btn-rounded btn-icon">
                                                 <i class="fas fa-info"></i>
                                             </button>
-                                            <button type="button" id="hapus-data"
+                                            <button data-id="{{$d->id}}" type="button" id="hapus-data"
                                                 class="btn btn-danger btn-rounded btn-icon">
                                                 <i style="margin-left: -2px;" class="fas fa-trash"></i>
                                             </button>
@@ -192,6 +192,7 @@
                 $('.form-insert-div').html('');
                 $('.form-insert-div').append(`
                     <div class="row card mr-5 ml-5">
+                        <input type="hidden" value="`+ data.golongan.id +`" name="id">
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">
@@ -257,26 +258,66 @@
                     $('#tb-body-detail').append(`
                     <tr>
                         <td>
-                            <input type="text" name="sub_golongan" value="`+ d.sub_golongan +`" class="form-control form-control-sm mt-2"
+                            <input type="hidden" name="id-detail[]" value="`+ d.id +`">
+                            <input type="text" name="sub_golongan[]" value="`+ d.sub_golongan +`" class="form-control form-control-sm mt-2"
                             placeholder="Insert here">
                         </td>
                         <td>
-                            <input type="number" name="tarif_air" value="`+ d.tarif_air +`" class="form-control form-control-sm mt-2"
+                            <input type="number" name="tarif_air[]" value="`+ d.tarif_air +`" class="form-control form-control-sm mt-2"
                             placeholder="Insert here">
                         </td>
                         <td>
-                            <input type="number" name="biaya_beban" value="`+ d.biaya_beban +`" class="form-control form-control-sm mt-2"
+                            <input type="number" name="biaya_beban[]" value="`+ d.biaya_beban +`" class="form-control form-control-sm mt-2"
                             placeholder="Insert here">
                         </td>
                         <td style="width:50px;">
-                            <button type="button"
+                            <button type="button" id="delete-detail-btn`+d.id+`" data-id="`+ d.id +`"
                                 class="btn btn-danger btn-rounded btn-icon">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </td>
                     </tr>
                     `);
+                    $(document).on('click', `#delete-detail-btn`+d.id+``, function(){
+                        let dataId = $(this).data('id');
+                        Swal.fire({
+                        title: 'Anda Yakin?',
+                        text: "Data ini mungkin terhubung ke tabel yang lain!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        cancelButtonText: 'Batal',
+                        confirmButtonText: 'Hapus'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $.ajax({
+                                    url: "deleteDetailData/" + dataId,
+                                    type: 'delete',
+                                    success: function () {
+                                        Swal.fire({
+                                            title: 'Hapus!',
+                                            text: 'Data berhasl di hapus.',
+                                            icon: 'success',
+                                            cancelButtonColor: '#d33',
+                                            confirmButtonText: 'Oke'
+                                        }).then((result) => {
+                                            location.reload();
+                                        });
+                                    },
+                                    error: function () {
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: 'Oops...',
+                                            text: 'Ada yang salah!',
+                                        });
+                                    }
+                                })
+                            }
+                        })
+                    });
                 });
+                $('#form-insert').attr('action', `{{route('golongan.update')}}`);
             });
         });
 
@@ -347,6 +388,46 @@
             $('#add-golongan-btn').addClass('fa-plus');
             $('#remove-data').attr('id', 'add-data');
             $('#opt-add-golongan').val(false);
+        });
+
+        $(document).on('click', '#hapus-data', function()
+        {
+            let dataId = $(this).data('id');
+            Swal.fire({
+            title: 'Anda Yakin?',
+            text: "Data ini mungkin terhubung ke tabel yang lain!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Batal',
+            confirmButtonText: 'Hapus'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "deleteSpecData/" + dataId,
+                        type: 'delete',
+                        success: function () {
+                            Swal.fire({
+                                title: 'Hapus!',
+                                text: 'Data berhasl di hapus.',
+                                icon: 'success',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Oke'
+                            }).then((result) => {
+                                location.reload();
+                            });
+                        },
+                        error: function () {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Ada yang salah!',
+                            });
+                        }
+                    })
+                }
+            })
         });
     });
 </script>
