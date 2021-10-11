@@ -3,12 +3,14 @@
 use App\Http\Controllers\Cms\GolonganController;
 use App\Http\Controllers\Cms\KaryawanController;
 use App\Http\Controllers\Cms\PendaftaranController;
+use App\Http\Controllers\Cms\DashController;
+use App\Http\Controllers\Cms\PemakaianController;
 use App\Http\Controllers\Auth\UserController;
 use App\Models\GolonganModel;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('Layout.Base');
+    return view('Cms.Dashboard');
 });
 Route::get('/contoh', function () {
     return view('Contoh.Contoh');
@@ -45,4 +47,16 @@ Route::prefix('/user')->group(function () {
     Route::get('getspecdata/{id}', [UserController::class, 'edit']);
     Route::post('update', [UserController::class, 'update'])->name('user.update');
     Route::delete('deletespecdata/{id}', [UserController::class, 'delete']);
+});
+
+Route::group(['prefix' => 'dashboard'], function() {
+    Route::get('index', [DashController::class, 'index'])->name('dashboard.index');
+});
+
+Route::prefix('/pemakaian')->group(function () {
+    Route::get('index', [PemakaianController::class, 'index'])->name('pemakaian.index');
+    Route::post('insert', [PemakaianController::class, 'insert'])->name('pemakaian.insert');
+    Route::get('getspecdata/{id}', [PemakaianController::class, 'edit']);
+    Route::post('update', [PemakaianController::class, 'update'])->name('pemakaian.update');
+    Route::delete('deletespecdata/{id}', [PemakaianController::class, 'delete']);
 });
