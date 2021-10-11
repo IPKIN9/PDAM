@@ -25,6 +25,11 @@ Route::prefix('/golongan')->group(function () {
 
 Route::prefix('/daftar')->group(function () {
     Route::get('index', [PendaftaranController::class, 'index'])->name('daftar.index');
+    Route::get('getDetailGolongan/{id}', [PendaftaranController::class, 'detail']);
+    Route::post('create', [PendaftaranController::class, 'create'])->name('daftar.create');
+    Route::get('getSpecData/{id}', [PendaftaranController::class, 'detail_edit']);
+    Route::post('update', [PendaftaranController::class, 'update'])->name('daftar.update');
+    Route::delete('deleteSpecData/{id}', [PendaftaranController::class, 'delete']);
 });
 
 Route::prefix('/karyawan')->group(function () {

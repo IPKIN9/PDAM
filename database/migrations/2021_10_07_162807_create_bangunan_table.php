@@ -23,8 +23,8 @@ class CreateBangunanTable extends Migration
             $table->string('perumahan_sambungan');
             $table->string('sumber_air');
             $table->string('pmj');
-            $table->string('nama_sebelumnya');
-            $table->string('no_sebelumnya');
+            $table->string('nama_sebelumnya')->nullable();
+            $table->string('no_sebelumnya')->nullable();
             $table->timestamps();
         });
     }

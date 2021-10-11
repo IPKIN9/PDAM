@@ -23,7 +23,7 @@ class GolonganController extends Controller
     public function create(GolonganRequest $request)
     {
         $date = Carbon::now();
-        $random = Str::random(5);
+        $random = Str::random(10);
         $confir = $request->confir;
         if ($confir == "true") {
             $data = array(
@@ -32,7 +32,7 @@ class GolonganController extends Controller
                 'unit' => $request->unit,
                 'blok_konsumsi' => $request->blok_konsumsi,
                 'created_at' => $date,
-                'updated' => $date,
+                'updated_at' => $date,
             );
             GolonganModel::create($data);
             $kode = GolonganModel::where('kode_golongan', $random)->value('id');
@@ -42,7 +42,7 @@ class GolonganController extends Controller
                 'tarif_air' => $request->tarif_air,
                 'biaya_beban' => $request->biaya_beban,
                 'created_at' => $date,
-                'updated' => $date,
+                'updated_at' => $date,
             );
             DetailGolonganModel::create($data2);
             return back()->with('status', 'Data baru berhasil ditambahkan');
@@ -53,7 +53,7 @@ class GolonganController extends Controller
                 'tarif_air' => $request->tarif_air,
                 'biaya_beban' => $request->biaya_beban,
                 'created_at' => $date,
-                'updated' => $date,
+                'updated_at' => $date,
             );
             DetailGolonganModel::create($data);
             return back()->with('status', 'Data berhasil ditambahkan');

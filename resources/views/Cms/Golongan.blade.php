@@ -337,8 +337,8 @@
                     <div class="col-sm-9">
                         <select required name="unit" class="form-control form-control-sm mt-2">
                             <option selected disabled>- Select -</option>
-                            <option value="unit a">Unit A</option>
-                            <option value="unit b">Unit B</option>
+                            <option value="Unit A">Unit A</option>
+                            <option value="Unit B">Unit B</option>
                         </select>
                         @error('unit')
                         <p class="text-danger">{{ $message }}</p>
@@ -353,8 +353,8 @@
                         <select required name="blok_konsumsi"
                             class="form-control form-control-sm mt-2">
                             <option selected disabled>- Select -</option>
-                            <option value="blok 1 - 10">Blok 1 - 10</option>
-                            <option value="blok > 10">Blok > 10</option>
+                            <option value="Blok 1 - 10">Blok 1 - 10</option>
+                            <option value="Blok > 10">Blok > 10</option>
                         </select>
                         @error('blok_konsumsi')
                         <p class="text-danger">{{ $message }}</p>

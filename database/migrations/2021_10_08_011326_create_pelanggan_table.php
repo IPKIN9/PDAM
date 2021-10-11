@@ -17,6 +17,7 @@ class CreatePelangganTable extends Migration
             $table->id();
             $table->foreignId('id_bangunan')->nullable()->constrained('bangunan');
             $table->foreignId('id_golongan')->nullable()->constrained('golongan');
+            $table->foreignId('id_detail_golongan')->nullable()->constrained('detail_golongan');
             $table->string('status');
             $table->string('nama');
             $table->text('alamat');
@@ -25,7 +26,7 @@ class CreatePelangganTable extends Migration
             $table->string('kabupaten');
             $table->string('no_pendaftaran');
             $table->text('alamat_sambungan');
-            $table->string('jumlah penghuni');
+            $table->string('jumlah_penghuni');
             $table->timestamps();
         });
     }

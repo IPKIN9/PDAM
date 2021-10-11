@@ -9,10 +9,11 @@ class PelangganModel extends Model
 {
     use HasFactory;
     protected $table = 'pelanggan';
-    protected $fillable =[
+    protected $fillable = [
         'id',
         'id_bangunan',
         'id_golongan',
+        'id_detail_golongan',
         'status',
         'nama',
         'alamat',
@@ -28,10 +29,14 @@ class PelangganModel extends Model
 
     public function bangunan_role()
     {
-       return $this->belongsTo(BangunanModel::class, 'id_bangunan');
+        return $this->belongsTo(BangunanModel::class, 'id_bangunan');
     }
     public function golongan_role()
     {
-       return $this->belongsTo(GolonganModel::class, 'id_golongan');
+        return $this->belongsTo(GolonganModel::class, 'id_golongan');
+    }
+    public function detail_role()
+    {
+        return $this->belongsTo(DetailGolonganModel::class, 'id_detail_golongan');
     }
 }
