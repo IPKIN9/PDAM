@@ -3,12 +3,13 @@
 use App\Http\Controllers\Cms\GolonganController;
 use App\Http\Controllers\Cms\KaryawanController;
 use App\Http\Controllers\Cms\PendaftaranController;
+use App\Http\Controllers\Cms\DashController;
 use App\Http\Controllers\Auth\UserController;
 use App\Models\GolonganModel;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('Layout.Base');
+    return view('Cms.Dashboard');
 });
 Route::get('/contoh', function () {
     return view('Contoh.Contoh');
@@ -45,4 +46,8 @@ Route::prefix('/user')->group(function () {
     Route::get('getspecdata/{id}', [UserController::class, 'edit']);
     Route::post('update', [UserController::class, 'update'])->name('user.update');
     Route::delete('deletespecdata/{id}', [UserController::class, 'delete']);
+});
+
+Route::group(['prefix' => 'dashboard'], function() {
+    Route::get('index', [DashController::class, 'index'])->name('dashboard.index');
 });

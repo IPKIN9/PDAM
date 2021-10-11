@@ -40,7 +40,7 @@
                                 <div class="row">
                                     <div class="col-md-12 col-xl-3 d-flex flex-column justify-content-start">
                                         <div class="ml-xl-12 mt-12">
-                                            <img src="{{ asset('assets/img/logo.png') }}">
+                                            <img src="{{ asset('assets/images/logos.png') }}">
                                         </div>
                                     </div>
                                 </div>
