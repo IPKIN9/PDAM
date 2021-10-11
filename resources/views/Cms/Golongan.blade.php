@@ -33,26 +33,33 @@
                                     <tr>
                                         <th>No.</th>
                                         <th>Golongan</th>
-                                        <th>Jumlah Data</th>
+                                        <th>Unit</th>
+                                        <th>Blok Konsumsi</th>
                                         <th>Tindakan</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php
+                                    $no = 1;
+                                    @endphp
+                                    @foreach ($data['golongan'] as $d)
                                     <tr>
-                                        <td style="width: 30px;">1</td>
-                                        <td>Herman Beck</td>
-                                        <td>$ 77.99</td>
+                                        <td style="width: 30px;">{{$no++}}</td>
+                                        <td>{{$d->golongan}}</td>
+                                        <td>{{$d->unit}}</td>
+                                        <td>{{$d->blok_konsumsi}}</td>
                                         <td class="text-center" style="width: 100px;">
-                                            <button type="button" id="detail-data"
+                                            <button data-id="{{$d->id}}" type="button" id="detail-data"
                                                 class="btn btn-secondary btn-rounded btn-icon">
                                                 <i class="fas fa-info"></i>
                                             </button>
-                                            <button type="button" id="hapus-data"
+                                            <button data-id="{{$d->id}}" type="button" id="hapus-data"
                                                 class="btn btn-danger btn-rounded btn-icon">
                                                 <i style="margin-left: -2px;" class="fas fa-trash"></i>
                                             </button>
                                         </td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -89,7 +96,7 @@
                                             </div>
                                         </div>
 
-                                        <input type="hidden" id="opt-add-golongan" value="false">
+                                        <input type="hidden" name="confir" id="opt-add-golongan" value="false">
 
                                         <div class="col-md-6 text-left" style="margin-top: 5px;">
                                             <button type="button" id="add-data"
@@ -159,6 +166,9 @@
         </div>
     </div>
 </div>
+<div class="row">
+
+</div>
 @endsection
 @section('js')
 <script>
@@ -174,7 +184,141 @@
 
         $(document).on('click', '#detail-data', function()
         {
-            $('#univModal').modal('show');
+            let dataId = $(this).data('id');
+            let url = "getSpecData/"+dataId;
+
+            $.get(url, function(data){
+                $('.modal-title').html('Detail Data');
+                $('.form-insert-div').html('');
+                $('.form-insert-div').append(`
+                    <div class="row card mr-5 ml-5">
+                        <input type="hidden" value="`+ data.golongan.id +`" name="id">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label">Golongan</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" name="golongan" class="form-control form-control-sm mt-2"
+                                            placeholder="Insert here" value="`+ data.golongan.golongan +`">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label">Unit</label>
+                                        <div class="col-sm-8">
+                                            <select required name="unit" id="id-unit" class="form-control form-control-sm mt-2">
+                                                <option selected disabled>- Select -</option>
+                                                <option value="unit a">Unit A</option>
+                                                <option value="unit b">Unit B</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label">Blok Konsumsi</label>
+                                        <div class="col-sm-8">
+                                            <select required name="blok_konsumsi" id="id-blok-konsumsi"
+                                                class="form-control form-control-sm mt-2">
+                                                <option selected disabled>- Select -</option>
+                                                <option value="blok 1 - 10">Blok 1 - 10</option>
+                                                <option value="blok > 10">Blok > 10</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>Sub</th>
+                                        <th>Tarif Air</th>
+                                        <th>Beban Biaya</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="tb-body-detail">
+                                    
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                `);
+                $('#univModal').modal('show');
+                $('#id-unit').val(data.golongan.unit);
+                $('#id-blok-konsumsi').val(data.golongan.blok_konsumsi);
+                $('#tb-body-detail').html('');
+                $.each(data.detail, function(i,d){
+                    $('#tb-body-detail').append(`
+                    <tr>
+                        <td>
+                            <input type="hidden" name="id-detail[]" value="`+ d.id +`">
+                            <input type="text" name="sub_golongan[]" value="`+ d.sub_golongan +`" class="form-control form-control-sm mt-2"
+                            placeholder="Insert here">
+                        </td>
+                        <td>
+                            <input type="number" name="tarif_air[]" value="`+ d.tarif_air +`" class="form-control form-control-sm mt-2"
+                            placeholder="Insert here">
+                        </td>
+                        <td>
+                            <input type="number" name="biaya_beban[]" value="`+ d.biaya_beban +`" class="form-control form-control-sm mt-2"
+                            placeholder="Insert here">
+                        </td>
+                        <td style="width:50px;">
+                            <button type="button" id="delete-detail-btn`+d.id+`" data-id="`+ d.id +`"
+                                class="btn btn-danger btn-rounded btn-icon">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    `);
+                    $(document).on('click', `#delete-detail-btn`+d.id+``, function(){
+                        let dataId = $(this).data('id');
+                        Swal.fire({
+                        title: 'Anda Yakin?',
+                        text: "Data ini mungkin terhubung ke tabel yang lain!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        cancelButtonText: 'Batal',
+                        confirmButtonText: 'Hapus'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $.ajax({
+                                    url: "deleteDetailData/" + dataId,
+                                    type: 'delete',
+                                    success: function () {
+                                        Swal.fire({
+                                            title: 'Hapus!',
+                                            text: 'Data berhasl di hapus.',
+                                            icon: 'success',
+                                            cancelButtonColor: '#d33',
+                                            confirmButtonText: 'Oke'
+                                        }).then((result) => {
+                                            location.reload();
+                                        });
+                                    },
+                                    error: function () {
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: 'Oops...',
+                                            text: 'Ada yang salah!',
+                                        });
+                                    }
+                                })
+                            }
+                        })
+                    });
+                });
+                $('#form-insert').attr('action', `{{route('golongan.update')}}`);
+            });
         });
 
         $(document).on('click', '#add-data', function()
@@ -191,10 +335,10 @@
                 <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Unit</label>
                     <div class="col-sm-9">
-                        <select name="unit" class="form-control form-control-sm mt-2">
+                        <select required name="unit" class="form-control form-control-sm mt-2">
                             <option selected disabled>- Select -</option>
-                            <option value="unit a">Unit A</option>
-                            <option value="unit b">Unit B</option>
+                            <option value="Unit A">Unit A</option>
+                            <option value="Unit B">Unit B</option>
                         </select>
                         @error('unit')
                         <p class="text-danger">{{ $message }}</p>
@@ -206,11 +350,11 @@
                 <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Blok Kosumsi</label>
                     <div class="col-sm-9">
-                        <select name="blok_konsumsi"
+                        <select required name="blok_konsumsi"
                             class="form-control form-control-sm mt-2">
                             <option selected disabled>- Select -</option>
-                            <option value="blok 1 - 10">Blok 1 - 10</option>
-                            <option value="blok > 10">Blok > 10</option>
+                            <option value="Blok 1 - 10">Blok 1 - 10</option>
+                            <option value="Blok > 10">Blok > 10</option>
                         </select>
                         @error('blok_konsumsi')
                         <p class="text-danger">{{ $message }}</p>
@@ -244,6 +388,46 @@
             $('#add-golongan-btn').addClass('fa-plus');
             $('#remove-data').attr('id', 'add-data');
             $('#opt-add-golongan').val(false);
+        });
+
+        $(document).on('click', '#hapus-data', function()
+        {
+            let dataId = $(this).data('id');
+            Swal.fire({
+            title: 'Anda Yakin?',
+            text: "Data ini mungkin terhubung ke tabel yang lain!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Batal',
+            confirmButtonText: 'Hapus'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "deleteSpecData/" + dataId,
+                        type: 'delete',
+                        success: function () {
+                            Swal.fire({
+                                title: 'Hapus!',
+                                text: 'Data berhasl di hapus.',
+                                icon: 'success',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Oke'
+                            }).then((result) => {
+                                location.reload();
+                            });
+                        },
+                        error: function () {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Ada yang salah!',
+                            });
+                        }
+                    })
+                }
+            })
         });
     });
 </script>
