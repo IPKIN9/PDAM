@@ -276,33 +276,47 @@ https://templatemo.com/tm-565-onix-digital
                 </div>
             </div>
         </div>
-        <div id="regist"></div>
-        <div class="container mt-5">
-            <div class="row">
-                <div class="col-lg-1"></div>
-                <div class="col-lg-11">
-                    <form id="contact" action="" method="get">
-                        <div class="row">
-                            <h4 class="mb-2">Formulir Pendaftaran</h4>
-                            <div class="col-lg-12">
-                                <fieldset>
-                                    <input type="name" name="nama" id="nama" placeholder="Nama Lengkap"
-                                        autocomplete="off" required>
-                                </fieldset>
+        <div id="regist">
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-11">
+                        <form id="contact" action="{{route('permintaan.insert')}}" method="post">
+                            @csrf
+                            <div class="row ml-5">
+                                @if (session('status'))
+                                <div class="alert alert-primary">
+                                    {{ session('status') }}
+                                </div>
+                                @endif
+                                <h4 class="mb-2">Formulir Pendaftaran</h4>
+                                <div class="col-lg-12">
+                                    <fieldset>
+                                        <input type="name" name="nama" id="nama" placeholder="Nama Lengkap"
+                                            autocomplete="off" required>
+                                        @error('nama')
+                                        <p class="text-danger">{{ $message }}</p>
+                                        @enderror
+                                    </fieldset>
+                                </div>
+                                <div class="col-lg-12">
+                                    <fieldset>
+                                        <input type="text" name="alamat" id="alamat" placeholder="Alamat"
+                                            autocomplete="off" required>
+                                        @error('alamat')
+                                        <p class="text-danger">{{ $message }}</p>
+                                        @enderror
+                                    </fieldset>
+                                </div>
+                                <div class="col-lg-12">
+                                    <fieldset>
+                                        <button type="submit" id="form-submit" class="main-button">Kirim
+                                            Permintaan</button>
+                                    </fieldset>
+                                </div>
                             </div>
-                            <div class="col-lg-12">
-                                <fieldset>
-                                    <input type="text" name="alamat" id="alamat" placeholder="Alamat" autocomplete="off"
-                                        required>
-                                </fieldset>
-                            </div>
-                            <div class="col-lg-12">
-                                <fieldset>
-                                    <button type="submit" id="form-submit" class="main-button">Kirim Permintaan</button>
-                                </fieldset>
-                            </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

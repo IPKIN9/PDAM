@@ -5,6 +5,7 @@ use App\Http\Controllers\Cms\KaryawanController;
 use App\Http\Controllers\Cms\PendaftaranController;
 use App\Http\Controllers\Cms\DashController;
 use App\Http\Controllers\Cms\PemakaianController;
+use App\Http\Controllers\Cms\HomesController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\Cms\TentangKamiController;
 use App\Http\Controllers\Web\HomeController;
@@ -12,6 +13,11 @@ use App\Models\GolonganModel;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index']);
+
+Route::prefix('/permintaan')->group(function () {
+    Route::post('insert', [HomeController::class, 'permintaan'])->name('permintaan.insert');
+});
+
 Route::get('Dashboard', function () {
     return view('Cms.Dashboard');
 });
@@ -64,7 +70,15 @@ Route::prefix('/pemakaian')->group(function () {
     Route::delete('deletespecdata/{id}', [PemakaianController::class, 'delete']);
 });
 
+<<<<<<< HEAD
 Route::prefix('tentang_kami')->group(function () {
     Route::get('index', [TentangKamiController::class, 'index'])->name('tentangkami.index');
     Route::post('create', [TentangKamiController::class, 'create'])->name('tentangkami.create');
 });
+=======
+Route::prefix('/home')->group(function () {
+    Route::get('index', [HomesController::class, 'permintaanindex'])->name('permintaan.index');
+    Route::delete('deletespecdata/{id}', [HomesController::class, 'deletepermintaan']);
+});
+
+>>>>>>> 73fdf85f671d990724a683e5e02fbbf8a19bfe58
