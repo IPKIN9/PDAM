@@ -11,7 +11,7 @@ use App\Models\GolonganModel;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/', function () {
+Route::get('Dashboard', function () {
     return view('Cms.Dashboard');
 });
 Route::get('/contoh', function () {
