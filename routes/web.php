@@ -6,9 +6,11 @@ use App\Http\Controllers\Cms\PendaftaranController;
 use App\Http\Controllers\Cms\DashController;
 use App\Http\Controllers\Cms\PemakaianController;
 use App\Http\Controllers\Auth\UserController;
+use App\Http\Controllers\Web\HomeController;
 use App\Models\GolonganModel;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/', [HomeController::class, 'index']);
 Route::get('/', function () {
     return view('Cms.Dashboard');
 });
@@ -49,7 +51,7 @@ Route::prefix('/user')->group(function () {
     Route::delete('deletespecdata/{id}', [UserController::class, 'delete']);
 });
 
-Route::group(['prefix' => 'dashboard'], function() {
+Route::group(['prefix' => 'dashboard'], function () {
     Route::get('index', [DashController::class, 'index'])->name('dashboard.index');
 });
 
