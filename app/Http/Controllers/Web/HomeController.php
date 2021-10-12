@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PengaduanRequest;
 use App\Models\BangunanModel;
 use App\Models\GolonganModel;
 use App\Models\PelangganModel;
 use App\Models\TentangKamiModel;
 use App\Http\Requests\PermintaanRequest;
+use App\Models\PengaduanModel;
 use App\Models\PermintaanModel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -54,7 +56,24 @@ class HomeController extends Controller
         }
     }
 
-    public function pengaduan()
+    public function pengaduan(PengaduanRequest $request)
     {
+        $date = Carbon::now();
+        $data = array(
+            'nama' => $request->nama,
+            'no_telpon' => $request->no_telpon,
+            'kerusakan' => $request->kerusakan,
+            'keterangan' => $request->keterangan,
+            'created_at' => $date,
+            'updated_at' => $date,
+        );
+        $pesan = 'Terima kasih telah menghubungi kami, Pengaduan anda akan kami tindak lanjuti dalam 1 x 24 jam.';
+        try {
+            PengaduanModel::create($data);
+            return redirect('/#contact-trd')->with('status', $pesan);
+        } catch (Throwable $e) {
+            report($e);
+            return back()->with('error', $e);
+        }
     }
 }

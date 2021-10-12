@@ -343,7 +343,7 @@ https://templatemo.com/tm-565-onix-digital
             </div>
         </div>
     </div>
-    <div id="contact-sec"></div>
+    <div id="contact-trd"></div>
     <div id="contact" class="contact-us section">
         <div class="container">
             <div class="row">
@@ -370,33 +370,70 @@ https://templatemo.com/tm-565-onix-digital
                     </div>
                 </div>
                 <div class="col-lg-5 align-self-center">
-                    <form id="contact" action="" method="get">
+                    <form id="contact" action="{{route('pengaduan.insert')}}" method="post">
+                        @csrf
                         <div class="row">
                             <div class="col-lg-12">
+                                @if (session('status'))
+                                <div class="alert alert-primary">
+                                    {{ session('status') }}
+                                </div>
+                                @endif
                                 <fieldset>
                                     <input type="text" name="nama" placeholder="Nama Lengkap" autocomplete="off"
                                         required>
+                                    @error('nama')
+                                    <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </fieldset>
                             </div>
                             <div class="col-lg-12">
                                 <fieldset>
-                                    <input type="text" name="hp" placeholder="Nomor Telepon" autocomplete="off"
+                                    <input type="text" name="no_telpon" placeholder="Nomor Telepon" autocomplete="off"
                                         required>
+                                    @error('no_telpon')
+                                    <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </fieldset>
                             </div>
                             <div class="col-lg-12">
                                 <fieldset>
-                                    <select name="">
+                                    <select name="kerusakan" id="kerusakan">
                                         <option value="" selected disabled style="color: #afafaf;">-- Jenis Keluhan --
                                         </option>
-                                        <option value="saab">Saab</option>
+                                        <option value="Pipa Bocor">Pipa Bocor</option>
+                                        <option value="Air Kecil">Air Kecil</option>
+                                        <option value="Air Kotor">Air Kotor</option>
+                                        <option value="Air Keruh">Air Keruh</option>
+                                        <option value="Meter Bocor">Meter Bocor</option>
+                                        <option value="Air Tidak Keluar">Air Tidak Keluar</option>
+                                        <option value="Segel Rusak/Tidak ada">Segel Rusak/Tidak ada</option>
+                                        <option value="Angka Meter bacaan tidak sesuai">Angka Meter bacaan tidak sesuai
+                                        </option>
+                                        <option value="Meter air macet">Meter air macet</option>
+                                        <option value="Meter air rusak">Meter air rusak</option>
+                                        <option value="Meter air lumut">Meter air lumut</option>
+                                        <option value="Meter air pecah">Meter air pecah</option>
+                                        <option value="Meter air buram">Meter air buram</option>
+                                        <option value="Stop keran rusak">Stop keran rusak</option>
+                                        <option value="Instalasi Persil bocor">Instalasi Persil bocor</option>
+                                        <option value="Instalasi Persil terseumbat">Instalasi Persil terseumbat</option>
+                                        <option value="Pipa Hydrant">Pipa Hydrant</option>
+                                        <option value="Valve">Valve</option>
+                                        <option value="Pipa dinas bocor">Pipa dinas bocor</option>
+                                        @error('kerusakan')
+                                        <p class="text-danger">{{ $message }}</p>
+                                        @enderror
                                     </select>
                                 </fieldset>
                             </div>
                             <div class="col-lg-12">
                                 <fieldset>
                                     <p>Keluhan Anda</p>
-                                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                                    <textarea name="keterangan" id="keterangan" cols="30" rows="10"></textarea>
+                                    @error('keterangan')
+                                    <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </fieldset>
                             </div>
                             <div class="col-lg-12">

@@ -14,8 +14,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index']);
 
-Route::prefix('/permintaan')->group(function () {
-    Route::post('insert', [HomeController::class, 'permintaan'])->name('permintaan.insert');
+Route::prefix('/home')->group(function () {
+    Route::post('insertpermintaan', [HomeController::class, 'permintaan'])->name('permintaan.insert');
+    Route::post('insertpengaduan', [HomeController::class, 'pengaduan'])->name('pengaduan.insert');
 });
 
 Route::get('Dashboard', function () {
@@ -77,4 +78,6 @@ Route::prefix('tentang_kami')->group(function () {
 Route::prefix('/home')->group(function () {
     Route::get('index', [HomesController::class, 'permintaanindex'])->name('permintaan.index');
     Route::delete('deletespecdata/{id}', [HomesController::class, 'deletepermintaan']);
+    Route::get('pengaduan', [HomesController::class, 'pengaduanindex'])->name('pengaduan.index');
+    Route::delete('delete/{id}', [HomesController::class, 'deletepengaduan']);
 });
