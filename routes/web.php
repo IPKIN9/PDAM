@@ -70,15 +70,11 @@ Route::prefix('/pemakaian')->group(function () {
     Route::delete('deletespecdata/{id}', [PemakaianController::class, 'delete']);
 });
 
-<<<<<<< HEAD
 Route::prefix('tentang_kami')->group(function () {
     Route::get('index', [TentangKamiController::class, 'index'])->name('tentangkami.index');
     Route::post('create', [TentangKamiController::class, 'create'])->name('tentangkami.create');
 });
-=======
 Route::prefix('/home')->group(function () {
     Route::get('index', [HomesController::class, 'permintaanindex'])->name('permintaan.index');
     Route::delete('deletespecdata/{id}', [HomesController::class, 'deletepermintaan']);
 });
-
->>>>>>> 73fdf85f671d990724a683e5e02fbbf8a19bfe58
