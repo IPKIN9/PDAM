@@ -4,12 +4,11 @@ use App\Http\Controllers\Cms\GolonganController;
 use App\Http\Controllers\Cms\KaryawanController;
 use App\Http\Controllers\Cms\PendaftaranController;
 use App\Http\Controllers\Auth\UserController;
+use App\Http\Controllers\Web\HomeController;
 use App\Models\GolonganModel;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('Layout.Base');
-});
+Route::get('/', [HomeController::class, 'index']);
 Route::get('/contoh', function () {
     return view('Contoh.Contoh');
 })->name('contoh.index');
