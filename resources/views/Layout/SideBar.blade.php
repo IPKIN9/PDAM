@@ -53,6 +53,12 @@
                 <span class="menu-title">Permintaan</span>
             </a>
         </li>
+        <li class="nav-item {{ Route::is('pengaduan.index') ? 'active' : '' }}">
+            <a class="nav-link" href="{{route('pengaduan.index')}}">
+                <i class="icon-paper menu-icon"></i>
+                <span class="menu-title">Pengaduan</span>
+            </a>
+        </li>
         <li class="nav-item {{ Route::is('contoh.index') ? 'active' : '' }}">
             <a class="nav-link" href="{{route('contoh.index')}}">
                 <i class="icon-grid menu-icon"></i>
