@@ -41,6 +41,12 @@
                 <span class="menu-title">Pemakaian</span>
             </a>
         </li>
+        <li class="nav-item {{ Route::is('tentangkami.index') ? 'active' : '' }}">
+            <a class="nav-link" href="{{route('tentangkami.index')}}">
+                <i class="icon-paper menu-icon"></i>
+                <span class="menu-title">Tentang Kami</span>
+            </a>
+        </li>
         <li class="nav-item {{ Route::is('permintaan.index') ? 'active' : '' }}">
             <a class="nav-link" href="{{route('permintaan.index')}}">
                 <i class="icon-paper menu-icon"></i>

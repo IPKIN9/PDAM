@@ -7,6 +7,7 @@ use App\Http\Controllers\Cms\DashController;
 use App\Http\Controllers\Cms\PemakaianController;
 use App\Http\Controllers\Cms\HomesController;
 use App\Http\Controllers\Auth\UserController;
+use App\Http\Controllers\Cms\TentangKamiController;
 use App\Http\Controllers\Web\HomeController;
 use App\Models\GolonganModel;
 use Illuminate\Support\Facades\Route;
@@ -69,8 +70,11 @@ Route::prefix('/pemakaian')->group(function () {
     Route::delete('deletespecdata/{id}', [PemakaianController::class, 'delete']);
 });
 
+Route::prefix('tentang_kami')->group(function () {
+    Route::get('index', [TentangKamiController::class, 'index'])->name('tentangkami.index');
+    Route::post('create', [TentangKamiController::class, 'create'])->name('tentangkami.create');
+});
 Route::prefix('/home')->group(function () {
     Route::get('index', [HomesController::class, 'permintaanindex'])->name('permintaan.index');
     Route::delete('deletespecdata/{id}', [HomesController::class, 'deletepermintaan']);
 });
-
