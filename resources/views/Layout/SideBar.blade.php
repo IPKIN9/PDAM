@@ -1,7 +1,7 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
-        <li class="nav-item">
-            <a class="nav-link" href="">
+        <li class="nav-item {{ Route::is('dashboard.index') ? 'active' : '' }}">
+            <a class="nav-link" href="{{route('dashboard.index')}}">
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Dashboard</span>
             </a>
@@ -33,6 +33,12 @@
             <a class="nav-link" href="{{route('daftar.index')}}">
                 <i class="icon-paper menu-icon"></i>
                 <span class="menu-title">Pemasangan Baru</span>
+            </a>
+        </li>
+        <li class="nav-item {{ Route::is('pemakaian.index') ? 'active' : '' }}">
+            <a class="nav-link" href="{{route('pemakaian.index')}}">
+                <i class="icon-paper menu-icon"></i>
+                <span class="menu-title">Pemakaian</span>
             </a>
         </li>
         <li class="nav-item {{ Route::is('contoh.index') ? 'active' : '' }}">
