@@ -5,12 +5,18 @@ use App\Http\Controllers\Cms\KaryawanController;
 use App\Http\Controllers\Cms\PendaftaranController;
 use App\Http\Controllers\Cms\DashController;
 use App\Http\Controllers\Cms\PemakaianController;
+use App\Http\Controllers\Cms\HomesController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\Web\HomeController;
 use App\Models\GolonganModel;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index']);
+
+Route::prefix('/permintaan')->group(function () {
+    Route::post('insert', [HomeController::class, 'permintaan'])->name('permintaan.insert');
+});
+
 Route::get('Dashboard', function () {
     return view('Cms.Dashboard');
 });
@@ -62,3 +68,9 @@ Route::prefix('/pemakaian')->group(function () {
     Route::post('update', [PemakaianController::class, 'update'])->name('pemakaian.update');
     Route::delete('deletespecdata/{id}', [PemakaianController::class, 'delete']);
 });
+
+Route::prefix('/home')->group(function () {
+    Route::get('index', [HomesController::class, 'permintaanindex'])->name('permintaan.index');
+    Route::delete('deletespecdata/{id}', [HomesController::class, 'deletepermintaan']);
+});
+
