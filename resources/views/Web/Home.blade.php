@@ -88,6 +88,7 @@ https://templatemo.com/tm-565-onix-digital
                                 <div class="item header-text">
                                     <h6>Selamat Datang Di Website PDAM</h6>
                                     <h2>Perusahaan Daerah<em> Air</em><span> Minum</span></h2>
+                                    <small>Cabang OGOAMAS</small>
                                     <p>Air minum berkualitas langsung dari mata air pilihan. Disempurnakan dengan
                                         teknologi terbaru agar dapat menghasilkan air yang siap pakai</p>
                                     <div class="down-buttons">
@@ -95,7 +96,11 @@ https://templatemo.com/tm-565-onix-digital
                                             <a href="#regist" style="color: white;">Pemasangan Baru</a>
                                         </div>
                                         <div class="call-button">
-                                            <a href="#"><i class="fa fa-phone"></i> 010-020-0340</a>
+                                            <a href="#"><i class="fa fa-phone"></i> @if ($data['tentang'] == null)
+                                                Data kosong
+                                                @else
+                                                {{$data['tentang']->hp}}
+                                                @endif</a>
                                         </div>
                                     </div>
                                 </div>
@@ -162,8 +167,11 @@ https://templatemo.com/tm-565-onix-digital
                 <div class="col-lg-6">
                     <div class="section-heading">
                         <h2>Tetap sehat dengan memperhatikan penggunaan <em>AIR</em> <span>BERSIH</span></h2>
-                        <p>Sudah mengaliri ribuan rumah dengan menggunakan teknologi water inject yang memastikan air
-                            lancar hingga kerumah kalian.</p>
+                        <p>@if ($data['tentang'] == null)
+                            Data kosong
+                            @else
+                            {{$data['tentang']->des}}
+                            @endif.</p>
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="fact-item">
@@ -171,7 +179,11 @@ https://templatemo.com/tm-565-onix-digital
                                         <div class="icon">
                                             <img src="{{ asset('web/assets/images/service-icon-01.png') }}" alt="">
                                         </div>
-                                        <div class="count-digit">320</div>
+                                        @if ($data['c_bangunan'] == null)
+                                        <div class="count-digit">0</div>
+                                        @else
+                                        <div class="count-digit">{{$data['c_bangunan']}}</div>
+                                        @endif
                                         <div class="count-title">Rumah</div>
                                         <p>Jumlah rumah yang menggunakan PDAM</p>
                                     </div>
@@ -183,7 +195,11 @@ https://templatemo.com/tm-565-onix-digital
                                         <div class="icon">
                                             <img src="{{ asset('web/assets/images/service-icon-03.png') }}" alt="">
                                         </div>
-                                        <div class="count-digit">640</div>
+                                        @if ($data['c_pelanggan'] == null)
+                                        <div class="count-digit">0</div>
+                                        @else
+                                        <div class="count-digit">{{$data['c_pelanggan']}}</div>
+                                        @endif
                                         <div class="count-title">Pelanggan</div>
                                         <p>Jumlah warga yang berlangganan.</p>
                                     </div>
@@ -218,10 +234,10 @@ https://templatemo.com/tm-565-onix-digital
                         <h4>Peket</h4>
                         <span>STANDAR</span>
                         <ul>
-                            <li>10 Projects</li>
-                            <li>100 GB space</li>
-                            <li>20 SEO checkups</li>
-                            <li>Basic Support</li>
+                            <li>Pemasangan 1 Hari</li>
+                            <li>Air Mengalir Lancar</li>
+                            <li>Kuota Hingga 20 Kubik Air</li>
+                            <li>Layanan Penuh</li>
                         </ul>
                         <div class="main-blue-button-hover">
 
@@ -231,12 +247,12 @@ https://templatemo.com/tm-565-onix-digital
                 <div class="col-lg-4">
                     <div class="item second-item">
                         <h4>Paket</h4>
-                        <span>UMUM</span>
+                        <span>MEDIUM</span>
                         <ul>
-                            <li>20 Projects</li>
-                            <li>200 GB space</li>
-                            <li>50 SEO checkups</li>
-                            <li>Pro Support</li>
+                            <li>Pemasangan 1-2 Hari</li>
+                            <li>Air Mengalir Lancar</li>
+                            <li>Kuota Hingga 30 Kubik Air</li>
+                            <li>Layanan Penuh</li>
                         </ul>
                         <div class="main-blue-button-hover">
 
@@ -248,10 +264,10 @@ https://templatemo.com/tm-565-onix-digital
                         <h4>Paket</h4>
                         <span>KHUSUS</span>
                         <ul>
-                            <li>30 Projects</li>
-                            <li>300 GB space</li>
-                            <li>100 SEO checkups</li>
-                            <li>Best Support</li>
+                            <li>Pemasangan Cukup Lama</li>
+                            <li>Air Mengalir Lancar</li>
+                            <li>Kuota Hingga 100 Kubik Air</li>
+                            <li>Layanan Penuh</li>
                         </ul>
                         <div class="main-blue-button-hover">
 
@@ -327,8 +343,15 @@ https://templatemo.com/tm-565-onix-digital
                             </iframe>
                         </div>
                         <div class="info">
-                            <span><i class="fa fa-phone"></i> <a href="#">Whatsapp<br>090-080-0760</a></span>
-                            <span><i class="fa fa-envelope"></i> <a href="#">Email<br>mail@company.com</a></span>
+                            @if ($data['tentang'] == null)
+                            <span><i class="fa fa-phone"></i> <a href="#">Whatsapp<br></a></span>
+                            <span><i class="fa fa-envelope"></i> <a href="#">Email<br></a></span>
+                            @else
+                            <span><i class="fa fa-phone"></i> <a
+                                    href="#">Whatsapp<br>{{$data['tentang']->wa}}</a></span>
+                            <span><i class="fa fa-envelope"></i> <a
+                                    href="#">Email<br>{{$data['tentang']->email}}</a></span>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -393,7 +416,11 @@ https://templatemo.com/tm-565-onix-digital
                             <a href="#"><img src="{{ asset('web/assets/images/logo.png') }}"
                                     alt="Onix Digital TemplateMo"></a>
                         </div>
-                        <a href="#">info@company.com</a>
+                        <a href="#">@if ($data['tentang'] == null)
+                            Data kosong
+                            @else
+                            {{$data['tentang']->email}}
+                            @endif</a>
                         <ul>
                             <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                             <li><a href="#"><i class="fa fa-twitter"></i></a></li>

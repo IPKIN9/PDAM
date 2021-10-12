@@ -6,6 +6,7 @@ use App\Http\Controllers\Cms\PendaftaranController;
 use App\Http\Controllers\Cms\DashController;
 use App\Http\Controllers\Cms\PemakaianController;
 use App\Http\Controllers\Auth\UserController;
+use App\Http\Controllers\Cms\TentangKamiController;
 use App\Http\Controllers\Web\HomeController;
 use App\Models\GolonganModel;
 use Illuminate\Support\Facades\Route;
@@ -61,4 +62,9 @@ Route::prefix('/pemakaian')->group(function () {
     Route::get('getspecdata/{id}', [PemakaianController::class, 'edit']);
     Route::post('update', [PemakaianController::class, 'update'])->name('pemakaian.update');
     Route::delete('deletespecdata/{id}', [PemakaianController::class, 'delete']);
+});
+
+Route::prefix('tentang_kami')->group(function () {
+    Route::get('index', [TentangKamiController::class, 'index'])->name('tentangkami.index');
+    Route::post('create', [TentangKamiController::class, 'create'])->name('tentangkami.create');
 });
