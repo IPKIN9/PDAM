@@ -7,6 +7,7 @@ use App\Http\Controllers\Cms\DashController;
 use App\Http\Controllers\Cms\PemakaianController;
 use App\Http\Controllers\Cms\HomesController;
 use App\Http\Controllers\Auth\UserController;
+use App\Http\Controllers\Cms\PembayaranController;
 use App\Http\Controllers\Cms\TentangKamiController;
 use App\Http\Controllers\Web\HomeController;
 use App\Models\GolonganModel;
@@ -80,4 +81,10 @@ Route::prefix('/home')->group(function () {
     Route::delete('deletespecdata/{id}', [HomesController::class, 'deletepermintaan']);
     Route::get('pengaduan', [HomesController::class, 'pengaduanindex'])->name('pengaduan.index');
     Route::delete('delete/{id}', [HomesController::class, 'deletepengaduan']);
+});
+
+Route::prefix('pembayaran')->group(function () {
+    Route::get('index', [PembayaranController::class, 'index'])->name('pembayaran.index');
+    Route::get('getDataStatus/{id}', [PembayaranController::class, 'status']);
+    Route::post('create', [PembayaranController::class, 'create'])->name('pembayaran.insert');
 });

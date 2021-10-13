@@ -14,7 +14,6 @@ class GolonganModel extends Model
         'kode_golongan',
         'golongan',
         'unit',
-        'blok_konsumsi',
         'created_at',
         'updated_at',
     ];

@@ -30,7 +30,6 @@ class GolonganController extends Controller
                 'golongan' => $request->golongan,
                 'kode_golongan' => $random,
                 'unit' => $request->unit,
-                'blok_konsumsi' => $request->blok_konsumsi,
                 'created_at' => $date,
                 'updated_at' => $date,
             );
@@ -39,7 +38,8 @@ class GolonganController extends Controller
             $data2 = array(
                 'id_golongan' => $kode,
                 'sub_golongan' => $request->sub_golongan,
-                'tarif_air' => $request->tarif_air,
+                'blok_1' => $request->blok_1,
+                'blok_2' => $request->blok_2,
                 'biaya_beban' => $request->biaya_beban,
                 'created_at' => $date,
                 'updated_at' => $date,
@@ -50,7 +50,8 @@ class GolonganController extends Controller
             $data = array(
                 'id_golongan' => $request->golongan,
                 'sub_golongan' => $request->sub_golongan,
-                'tarif_air' => $request->tarif_air,
+                'blok_1' => $request->blok_1,
+                'blok_2' => $request->blok_2,
                 'biaya_beban' => $request->biaya_beban,
                 'created_at' => $date,
                 'updated_at' => $date,
@@ -76,7 +77,6 @@ class GolonganController extends Controller
         $data = array(
             'golongan' => $request->golongan,
             'unit' => $request->unit,
-            'blok_konsumsi' => $request->blok_konsumsi,
             'updated_at' => $date,
         );
         GolonganModel::where('id', $id_golongan)->update($data);
@@ -85,7 +85,8 @@ class GolonganController extends Controller
             $id_detail = $request['id-detail'][$d];
             $data2 = array(
                 'sub_golongan' => $request['sub_golongan'][$d],
-                'tarif_air' => $request['tarif_air'][$d],
+                'blok_1' => $request['blok_1'][$d],
+                'blok_2' => $request['blok_2'][$d],
                 'biaya_beban' => $request['biaya_beban'][$d],
                 'updated_at' => $date,
             );

@@ -17,8 +17,9 @@ class CreateDetailGolonganTable extends Migration
             $table->id();
             $table->foreignId('id_golongan')->constrained('golongan');
             $table->string('sub_golongan');
-            $table->bigInteger('tarif_air');
             $table->bigInteger('biaya_beban');
+            $table->bigInteger('blok_1');
+            $table->bigInteger('blok_2');
             $table->timestamps();
         });
     }

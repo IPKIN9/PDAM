@@ -15,12 +15,14 @@ class CreatePembayaranTable extends Migration
     {
         Schema::create('pembayaran', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_user')->constrained('users');
+            $table->foreignId('id_user')->nullable()->constrained('users');
             $table->foreignId('id_pelanggan')->constrained('pelanggan');
             $table->foreignId('id_pemakaian')->constrained('pemakaian');
+            $table->bigInteger('adm');
             $table->bigInteger('ppa');
             $table->bigInteger('denda');
             $table->bigInteger('total');
+            $table->string('periode');
             $table->boolean('telah_dibayar');
             $table->date('tgl_pembayaran')->nullable();
             $table->timestamps();
