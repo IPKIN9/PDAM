@@ -34,7 +34,6 @@
                                         <th>No.</th>
                                         <th>Golongan</th>
                                         <th>Unit</th>
-                                        <th>Blok Konsumsi</th>
                                         <th>Tindakan</th>
                                     </tr>
                                 </thead>
@@ -47,7 +46,6 @@
                                         <td style="width: 30px;">{{$no++}}</td>
                                         <td>{{$d->golongan}}</td>
                                         <td>{{$d->unit}}</td>
-                                        <td>{{$d->blok_konsumsi}}</td>
                                         <td class="text-center" style="width: 100px;">
                                             <button data-id="{{$d->id}}" type="button" id="detail-data"
                                                 class="btn btn-secondary btn-rounded btn-icon">
@@ -126,17 +124,32 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label">Tarif Air</label>
+                                                <label class="col-sm-3 col-form-label">Tarif Blok 1</label>
                                                 <div class="col-sm-9">
-                                                    <input type="number" name="tarif_air"
+                                                    <input type="number" name="blok_1"
                                                         class="form-control form-control-sm mt-2"
                                                         placeholder="Insert here">
-                                                    @error('tarif_air')
+                                                    @error('blok_1')
                                                     <p class="text-danger">{{ $message }}</p>
                                                     @enderror
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">Tarif Blok 2</label>
+                                                <div class="col-sm-9">
+                                                    <input type="number" name="blok_2"
+                                                        class="form-control form-control-sm mt-2"
+                                                        placeholder="Insert here">
+                                                    @error('tarif_air')
+                                                    <p class="blok_2">{{ $message }}</p>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Biaya Beban</label>
@@ -210,21 +223,8 @@
                                         <div class="col-sm-8">
                                             <select required name="unit" id="id-unit" class="form-control form-control-sm mt-2">
                                                 <option selected disabled>- Select -</option>
-                                                <option value="unit a">Unit A</option>
-                                                <option value="unit b">Unit B</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group row">
-                                        <label class="col-sm-4 col-form-label">Blok Konsumsi</label>
-                                        <div class="col-sm-8">
-                                            <select required name="blok_konsumsi" id="id-blok-konsumsi"
-                                                class="form-control form-control-sm mt-2">
-                                                <option selected disabled>- Select -</option>
-                                                <option value="blok 1 - 10">Blok 1 - 10</option>
-                                                <option value="blok > 10">Blok > 10</option>
+                                                <option value="Unit A">Unit A</option>
+                                                <option value="Unit B">Unit B</option>
                                             </select>
                                         </div>
                                     </div>
@@ -237,7 +237,8 @@
                                     <thead>
                                     <tr>
                                         <th>Sub</th>
-                                        <th>Tarif Air</th>
+                                        <th>Tarif Blok 1</th>
+                                        <th>Tarif Blok 2</th>
                                         <th>Beban Biaya</th>
                                         <th>Action</th>
                                     </tr>
@@ -263,7 +264,11 @@
                             placeholder="Insert here">
                         </td>
                         <td>
-                            <input type="number" name="tarif_air[]" value="`+ d.tarif_air +`" class="form-control form-control-sm mt-2"
+                            <input type="number" name="blok_1[]" value="`+ d.blok_1 +`" class="form-control form-control-sm mt-2"
+                            placeholder="Insert here">
+                        </td>
+                        <td>
+                            <input type="number" name="blok_2[]" value="`+ d.blok_2 +`" class="form-control form-control-sm mt-2"
                             placeholder="Insert here">
                         </td>
                         <td>
@@ -341,22 +346,6 @@
                             <option value="Unit B">Unit B</option>
                         </select>
                         @error('unit')
-                        <p class="text-danger">{{ $message }}</p>
-                        @enderror
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Blok Kosumsi</label>
-                    <div class="col-sm-9">
-                        <select required name="blok_konsumsi"
-                            class="form-control form-control-sm mt-2">
-                            <option selected disabled>- Select -</option>
-                            <option value="Blok 1 - 10">Blok 1 - 10</option>
-                            <option value="Blok > 10">Blok > 10</option>
-                        </select>
-                        @error('blok_konsumsi')
                         <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>

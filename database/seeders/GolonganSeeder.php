@@ -18,7 +18,6 @@ class GolonganSeeder extends Seeder
             'golongan' => "Tipikal Air Banyak",
             'kode_golongan' => $random,
             'unit' => "Unit A",
-            'blok_konsumsi' => "Blok 1 - 10",
             'created_at' => $date,
             'updated_at' => $date,
         );
@@ -27,7 +26,8 @@ class GolonganSeeder extends Seeder
         $data2 = array(
             'id_golongan' => $kode,
             'sub_golongan' => "Banyak Air",
-            'tarif_air' => 1000,
+            'blok_1' => 1000,
+            'blok_2' => 2000,
             'biaya_beban' => 1000,
             'created_at' => $date,
             'updated_at' => $date,
@@ -36,8 +36,9 @@ class GolonganSeeder extends Seeder
         $data3 = array(
             'id_golongan' => $kode,
             'sub_golongan' => "Sangat Banyak",
-            'tarif_air' => 2000,
-            'biaya_beban' => 2000,
+            'blok_1' => 1500,
+            'blok_2' => 2500,
+            'biaya_beban' => 1000,
             'created_at' => $date,
             'updated_at' => $date,
         );

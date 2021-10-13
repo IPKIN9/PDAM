@@ -13,14 +13,15 @@ class DetailGolonganModel extends Model
         'id',
         'id_golongan',
         'sub_golongan',
-        'tarif_air',
+        'blok_1',
+        'blok_2',
         'biaya_beban',
         'created_at',
         'updated_at',
     ];
-    
+
     public function golongan_role()
     {
-        return $this->belongsTo(GolonganModel::class,'id_golongan');
+        return $this->belongsTo(GolonganModel::class, 'id_golongan');
     }
 }

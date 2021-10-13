@@ -17,7 +17,8 @@ class GolonganRequest extends FormRequest
         return [
             'golongan' => 'required',
             'sub_golongan' => 'required',
-            'tarif_air' => 'required',
+            'blok_1' => 'required',
+            'blok_2' => 'required',
             'biaya_beban' => 'required'
         ];
     }
@@ -25,7 +26,8 @@ class GolonganRequest extends FormRequest
     public function messages()
     {
         return [
-            'required' => 'Field ini tidak boleh kosong'
+            'required' => 'Field ini tidak boleh kosong',
+            'numeric' => 'Type data tidak valid'
         ];
     }
 }
