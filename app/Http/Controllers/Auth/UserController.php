@@ -15,9 +15,10 @@ class UserController extends Controller
 {
     public function index()
     {
-        $data = array(
-            'all' => User::all(),
-        );
+        // $data = array(
+        //     'all' => User::all(),
+        // );
+        $data = User::where('id', '!=', auth()->id())->get();
         return view('Auth.User')->with('data', $data);
     }
 
@@ -28,11 +29,13 @@ class UserController extends Controller
             'name' => $request->name,
             'username' => $request->username,
             'password' => Hash::make($request->password),
+            'role' => $request->role,
             'created_at' => $date,
             'updated_at' => $date,
         );
         try {
-            User::create($data);
+            $admin = User::create($data);
+            $admin->assignRole($request->role);
             return back()->with('status', 'Data berhasil ditambahkan');
         } catch (Throwable $e) {
             report($e);
@@ -51,6 +54,7 @@ class UserController extends Controller
         $id = $request->id;
         $date = Carbon::now();
         $data = array(
+            'name' => $request->username,
             'username' => $request->username,
             'password' => Hash::make($request->password),
             'updated_at' => $date,
