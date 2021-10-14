@@ -17,7 +17,6 @@ class UserController extends Controller
     {
         $data = array(
             'all' => User::all(),
-            'kry' => KaryawanModel::all(),
         );
         return view('Auth.User')->with('data', $data);
     }
@@ -26,7 +25,7 @@ class UserController extends Controller
     {
         $date = Carbon::now();
         $data = array(
-            'id_karyawan' => $request->id_karyawan,
+            'name' => $request->name,
             'username' => $request->username,
             'password' => Hash::make($request->password),
             'created_at' => $date,
@@ -52,7 +51,6 @@ class UserController extends Controller
         $id = $request->id;
         $date = Carbon::now();
         $data = array(
-            'id_karyawan' => $request->id_karyawan,
             'username' => $request->username,
             'password' => Hash::make($request->password),
             'updated_at' => $date,
