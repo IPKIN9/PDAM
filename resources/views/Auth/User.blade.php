@@ -35,6 +35,7 @@
                                         <th>Nama Lengkap</th>
                                         <th>Username</th>
                                         <th>Password</th>
+                                        <th>Role</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -42,12 +43,13 @@
                                     @php
                                     $no=1;
                                     @endphp
-                                    @foreach ($data ['all'] as $d)
+                                    @foreach ($data as $d)
                                     <tr>
                                         <td>{{$no++}}</td>
                                         <td>{{$d->name}}</td>
                                         <td>{{$d->username}}</td>
                                         <td>{{$d->password}}</td>
+                                        <td>{{$d->role}}</td>
                                         <td class="text-center" style="width: 100px;">
                                             <button type="button" class="btn btn-secondary btn-rounded btn-icon"
                                                 data-id="{{$d->id}}" id="btn-edit">
@@ -117,6 +119,23 @@
                                                     <input type="password" class="form-control"
                                                         name="password_confirmation">
                                                     @error('password_confirmation')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group row">
+                                                <label class="col-sm-2 col-form-label">Role</label>
+                                                <div class="col-sm-10">
+                                                    <select class="form-control" name="role">
+                                                        <option disabled selected>Pilih Role</option>
+                                                        <option value="Admin" required>Admin</option>
+                                                        <option value="Petugas" required>Petugas</option>
+                                                    </select>
+                                                    @error('role')
                                                     <p class="text-danger">{{ $message }}</p>
                                                     @enderror
                                                 </div>
