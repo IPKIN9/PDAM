@@ -35,6 +35,7 @@
                                         <th>Nama</th>
                                         <th>Alamat</th>
                                         <th>Status</th>
+                                        <th>Pernyataan</th>
                                         <th>Tindakan</th>
                                     </tr>
                                 </thead>
@@ -48,6 +49,13 @@
                                         <td>{{$d->nama}}</td>
                                         <td>{{$d->alamat}}</td>
                                         <td>{{$d->status}}</td>
+                                        <td style="width: 15px;">
+                                            <a href="printDataPernyataan/{{$d->id}}"
+                                                class="btn btn-info btn-rounded btn-icon">
+                                                <i style="margin-left: -3px; padding-top: 11px;"
+                                                    class="fas fa-print"></i>
+                                            </a>
+                                        </td>
                                         <td class="text-center" style="width: 100px;">
                                             <button data-id="{{$d->id}}" type="button" id="detail-data"
                                                 class="btn btn-secondary btn-rounded btn-icon">

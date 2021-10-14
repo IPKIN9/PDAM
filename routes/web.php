@@ -10,7 +10,6 @@ use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\Cms\PembayaranController;
 use App\Http\Controllers\Cms\TentangKamiController;
 use App\Http\Controllers\Web\HomeController;
-use App\Models\GolonganModel;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index']);
@@ -43,6 +42,7 @@ Route::prefix('/daftar')->group(function () {
     Route::get('getSpecData/{id}', [PendaftaranController::class, 'detail_edit']);
     Route::post('update', [PendaftaranController::class, 'update'])->name('daftar.update');
     Route::delete('deleteSpecData/{id}', [PendaftaranController::class, 'delete']);
+    Route::get('printDataPernyataan/{id}', [PendaftaranController::class, 'cetak']);
 });
 
 Route::prefix('/karyawan')->group(function () {
@@ -87,4 +87,5 @@ Route::prefix('pembayaran')->group(function () {
     Route::get('index', [PembayaranController::class, 'index'])->name('pembayaran.index');
     Route::get('getDataStatus/{id}', [PembayaranController::class, 'status']);
     Route::post('create', [PembayaranController::class, 'create'])->name('pembayaran.insert');
+    Route::get('printData/{id}', [PembayaranController::class, 'cetak']);
 });

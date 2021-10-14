@@ -52,10 +52,9 @@
                                     </td>
                                     <td>{{$d->tgl_pembayaran}}</td>
                                     <td class="text-center" style="width: 100px;">
-                                        <button data-id="{{$d->id}}" type="button" id="detail-data"
-                                            class="btn btn-secondary btn-rounded btn-icon">
-                                            <i style="margin-left: -3px;" class="fas fa-print"></i>
-                                        </button>
+                                        <a href="printData/{{$d->id}}" class="btn btn-secondary btn-rounded btn-icon">
+                                            <i style="margin-left: -3px; padding-top: 10px;" class="fas fa-print"></i>
+                                        </a>
                                         <button data-id="{{$d->id}}" type="button" id="hapus-data"
                                             class="btn btn-danger btn-rounded btn-icon">
                                             <i style="margin-left: -2px;" class="fas fa-trash"></i>
@@ -187,7 +186,7 @@
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Tarif Air</label>
                                                 <div class="col-sm-10">
-                                                    <input id="tarif_air" readonly type="number"
+                                                    <input name="tarif_air" id="tarif_air" readonly type="number"
                                                         class="form-control form-control-sm" placeholder="Insert here">
                                                 </div>
                                             </div>

@@ -17,6 +17,7 @@ class PembayaranModel extends Model
       'adm',
       'ppa',
       'denda',
+      'tarif_air',
       'total',
       'periode',
       'telah_dibayar',

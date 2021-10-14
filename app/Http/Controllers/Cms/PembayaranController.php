@@ -9,6 +9,8 @@ use App\Models\PemakaianModel;
 use App\Models\PembayaranModel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Blade;
+use PDF;
 
 class PembayaranController extends Controller
 {
@@ -92,6 +94,7 @@ class PembayaranController extends Controller
             'ppa' => $request->ppa,
             'denda' => $request->denda,
             'adm' => $request->adm,
+            'tarif_air' => $request->tarif_air,
             'tgl_pembayaran' => $request->tgl_pembayaran,
             'total' => $request->total,
             'created_at' => $date,
@@ -100,5 +103,16 @@ class PembayaranController extends Controller
 
         PembayaranModel::create($data);
         return redirect()->back()->with('status', 'Pembayaran berhasil dilakukan');
+    }
+
+    public function cetak($id)
+    {
+        Blade::directive('currency', function ($expression) {
+            return "Rp. <?php echo number_format($expression,0,',','.'); ?>";
+        });
+        $data = PembayaranModel::where('id', $id)->with('pelanggan_role', 'pemakaian_role')->first();
+        // return view('Paper.Struck')->with('data', $data);
+        $pdf = PDF::loadView('Paper.Struck', ['data' => $data])->setPaper('A4', 'landscape');;
+        return $pdf->download('invoice.pdf');
     }
 }

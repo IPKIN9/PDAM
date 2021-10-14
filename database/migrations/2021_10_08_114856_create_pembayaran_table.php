@@ -21,6 +21,7 @@ class CreatePembayaranTable extends Migration
             $table->bigInteger('adm');
             $table->bigInteger('ppa');
             $table->bigInteger('denda');
+            $table->bigInteger('tarif_air');
             $table->bigInteger('total');
             $table->string('periode');
             $table->boolean('telah_dibayar');
