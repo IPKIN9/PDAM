@@ -32,9 +32,9 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>User</th>
                                         <th>Pelanggan</th>
                                         <th>Kode Pemakaian</th>
+                                        <th>Periode</th>
                                         <th>Jumlah Pemakaian</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -46,9 +46,9 @@
                                     @foreach ($data ['all'] as $d)
                                     <tr>
                                         <td>{{$no++}}</td>
-                                        <td>{{$d->user_role->karyawan_role->nama}}</td>
                                         <td>{{$d->pelanggan_role->nama}}</td>
                                         <td>{{$d->kode_pemakaian}}</td>
+                                        <td>{{$d->periode}}</td>
                                         <td>{{$d->jumlah_pemakaian}}</td>
                                         <td class="text-center" style="width: 100px;">
                                             <button type="button" class="btn btn-secondary btn-rounded btn-icon"
@@ -79,22 +79,6 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group row">
-                                                <label class="col-sm-4 col-form-label">User</label>
-                                                <div class="col-sm-8">
-                                                    <select class="form-control" name="id_user">
-                                                        <option disabled selected>Pilih user</option>
-                                                        @foreach ($data ['user'] as $d)
-                                                        <option value="{{$d->id}}">{{$d->karyawan_role->nama}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                    @error('id_user')
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group row">
                                                 <label class="col-sm-4 col-form-label">Pelanggan</label>
                                                 <div class="col-sm-8">
                                                     <select class="form-control" name="id_pelanggan">
@@ -109,14 +93,45 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label class="col-sm-4 col-form-label">Kode Pemakaian</label>
                                                 <div class="col-sm-8">
                                                     <input type="text" class="form-control" name="kode_pemakaian">
                                                     @error('kode_pemakaian')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-4 col-form-label">Periode</label>
+                                                <div class="col-sm-8">
+                                                    <select name="periode" id="periode"
+                                                        class="form-control form-control-sm">
+                                                        <option selected disabled>- Select -</option>
+                                                        <option value="Januari-{{date('Y')}}">Januari-{{date('Y')}}
+                                                        </option>
+                                                        <option value="Februari-{{date('Y')}}">Februari-{{date('Y')}}
+                                                        </option>
+                                                        <option value="Maret-{{date('Y')}}">Maret-{{date('Y')}}</option>
+                                                        <option value="April-{{date('Y')}}">April-{{date('Y')}}</option>
+                                                        <option value="Mei-{{date('Y')}}">Mei-{{date('Y')}}</option>
+                                                        <option value="Juni-{{date('Y')}}">Juni-{{date('Y')}}</option>
+                                                        <option value="Juli-{{date('Y')}}">Juli-{{date('Y')}}</option>
+                                                        <option value="Agustus-{{date('Y')}}">Agustus-{{date('Y')}}
+                                                        </option>
+                                                        <option value="Oktober-{{date('Y')}}">Oktober-{{date('Y')}}
+                                                        </option>
+                                                        <option value="November-{{date('Y')}}">November-{{date('Y')}}
+                                                        </option>
+                                                        <option value="Desember-{{date('Y')}}">Desember-{{date('Y')}}
+                                                        </option>
+                                                    </select>
+                                                    @error('periode')
                                                     <p class="text-danger">{{ $message }}</p>
                                                     @enderror
                                                 </div>
@@ -170,20 +185,7 @@
                 $('.modal-body').append(`
                 <div class="row">
                     <input type="hidden" class="form-control" name="id" id="id" value="`+data.id+`">
-                    <div class="col-md-6">
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">User</label>
-                            <div class="col-sm-8">
-                                <select class="form-control" name="id_user" id="id_user">
-                                    <option disabled selected>Pilih user</option>
-                                    @foreach ($data ['user'] as $d)
-                                    <option value="{{$d->id}}">{{$d->karyawan_role->nama}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label">Pelanggan</label>
                             <div class="col-sm-8">

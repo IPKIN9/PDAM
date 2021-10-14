@@ -9,6 +9,7 @@ use App\Models\PemakaianModel;
 use App\Models\PembayaranModel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
 use PDF;
 
@@ -85,8 +86,10 @@ class PembayaranController extends Controller
 
     public function create(PembayaranRequest $request)
     {
+        $id_user = Auth::user()->id;
         $date = Carbon::now();
         $data = array(
+            'id_user' => $id_user,
             'id_pemakaian' => $request->id_pemakaian,
             'id_pelanggan' => $request->id_pelanggan,
             'periode' => $request->periode,

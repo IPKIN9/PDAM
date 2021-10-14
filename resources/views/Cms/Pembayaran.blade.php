@@ -55,10 +55,6 @@
                                         <a href="printData/{{$d->id}}" class="btn btn-secondary btn-rounded btn-icon">
                                             <i style="margin-left: -3px; padding-top: 10px;" class="fas fa-print"></i>
                                         </a>
-                                        <button data-id="{{$d->id}}" type="button" id="hapus-data"
-                                            class="btn btn-danger btn-rounded btn-icon">
-                                            <i style="margin-left: -2px;" class="fas fa-trash"></i>
-                                        </button>
                                     </td>
                                     @endforeach
                                 </tbody>
@@ -301,44 +297,6 @@
             });
         });
 
-        $(document).on('click','#btn-del',function(){
-            let dataId = $(this).data('id');
-            Swal.fire({
-            title: 'Anda Yakin?',
-            text: "Data ini mungkin terhubung ke tabel yang lain!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            cancelButtonText: 'Batal',
-            confirmButtonText: 'Hapus'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        url: "deletespecdata/" + dataId,
-                        type: 'delete',
-                        success: function () {
-                            Swal.fire({
-                                title: 'Hapus!',
-                                text: 'Data berhasl di hapus.',
-                                icon: 'success',
-                                cancelButtonColor: '#d33',
-                                confirmButtonText: 'Oke'
-                            }).then((result) => {
-                                location.reload();
-                            });
-                        },
-                        error: function () {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Oops...',
-                                text: 'Ada yang salah!',
-                            });
-                        }
-                    })
-                }
-            })
-        });
     });
 </script>
 @endsection

@@ -29,6 +29,7 @@ Route::get('logout', function () {
 Route::prefix('/home')->group(function () {
     Route::post('insertpermintaan', [HomeController::class, 'permintaan'])->name('permintaan.insert');
     Route::post('insertpengaduan', [HomeController::class, 'pengaduan'])->name('pengaduan.insert');
+    Route::get('cekTagihan', [HomeController::class, 'check'])->name('tagihan.check');
 });
 Route::prefix('/home')->group(function () {
     Route::get('index', [HomesController::class, 'permintaanindex'])->name('permintaan.index');

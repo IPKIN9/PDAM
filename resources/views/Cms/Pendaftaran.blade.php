@@ -131,14 +131,9 @@
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Kecamatan</label>
                                                 <div class="col-sm-9">
-                                                    <select name="kecamatan" class="form-control form-control-sm mt-2"
-                                                        id="">
-                                                        <option selected disabled>- Select -</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                        <option>4</option>
-                                                        <option>5</option>
-                                                    </select>
+                                                    <input name="kecamatan" type="text"
+                                                        class="form-control form-control-sm mt-2"
+                                                        placeholder="Insert Here">
                                                     @error('kecamatan')
                                                     <p class="text-danger">{{ $message }}</p>
                                                     @enderror
@@ -151,14 +146,9 @@
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Kabupaten</label>
                                                 <div class="col-sm-9">
-                                                    <select name="kabupaten" class="form-control form-control-sm mt-2"
-                                                        id="">
-                                                        <option selected disabled>- Select -</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                        <option>4</option>
-                                                        <option>5</option>
-                                                    </select>
+                                                    <input name="kabupaten" type="text"
+                                                        class="form-control form-control-sm mt-2"
+                                                        placeholder="Insert Here">
                                                     @error('kabupaten')
                                                     <p class="text-danger">{{ $message }}</p>
                                                     @enderror
@@ -280,14 +270,9 @@
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Jenis Bangunan</label>
                                                 <div class="col-sm-9">
-                                                    <select name="jenis_bangunan"
-                                                        class="form-control form-control-sm mt-2" id="">
-                                                        <option selected disabled>- Select -</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                        <option>4</option>
-                                                        <option>5</option>
-                                                    </select>
+                                                    <input name="jenis_bangunan" type="text"
+                                                        class="form-control form-control-sm mt-2"
+                                                        placeholder="Insert here">
                                                     @error('jenis_bangunan')
                                                     <p class="text-danger">{{ $message }}</p>
                                                     @enderror
@@ -298,14 +283,9 @@
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Status Bangunan</label>
                                                 <div class="col-sm-9">
-                                                    <select name="status_bangunan"
-                                                        class="form-control form-control-sm mt-2" id="">
-                                                        <option selected disabled>- Select -</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                        <option>4</option>
-                                                        <option>5</option>
-                                                    </select>
+                                                    <input name="status_bangunan" type="text"
+                                                        class="form-control form-control-sm mt-2"
+                                                        placeholder="Insert here">
                                                     @error('status_bangunan')
                                                     <p class="text-danger">{{ $message }}</p>
                                                     @enderror
@@ -516,14 +496,9 @@
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label">Kecamatan</label>
                                     <div class="col-sm-9">
-                                        <select name="kecamatan" class="form-control form-control-sm mt-2"
-                                            id="kecamatan-edit">
-                                            <option selected disabled>- Select -</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                        </select>
+                                        <input name="kecamatan" value="`+ data.pelanggan.kecamatan +`" type="text"
+                                        class="form-control form-control-sm mt-2"
+                                        placeholder="Insert Here">
                                     </div>
                                 </div>
                             </div>
@@ -533,14 +508,9 @@
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label">Kabupaten</label>
                                     <div class="col-sm-9">
-                                        <select name="kabupaten" class="form-control form-control-sm mt-2"
-                                            id="kabupaten-edit">
-                                            <option selected disabled>- Select -</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                        </select>
+                                        <input name="kabupaten" value="`+ data.pelanggan.kabupaten +`" type="text"
+                                        class="form-control form-control-sm mt-2"
+                                        placeholder="Insert Here">
                                     </div>
                                 </div>
                             </div>
@@ -598,13 +568,9 @@
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label">Jenis Bangunan</label>
                                     <div class="col-sm-9">
-                                        <select name="jenis_bangunan" class="form-control form-control-sm mt-2" id="jenis-bangunan-edit">
-                                            <option selected disabled>- Select -</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                        </select>
+                                        <input value="`+ bangunan.jenis_bangunan +`" name="jenis_bangunan" type="text"
+                                        class="form-control form-control-sm mt-2"
+                                        placeholder="Insert here">
                                     </div>
                                 </div>
                             </div>
@@ -612,13 +578,9 @@
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label">Status Bangunan</label>
                                     <div class="col-sm-9">
-                                        <select name="status_bangunan" class="form-control form-control-sm mt-2" id="status-bangunan-edit">
-                                            <option selected disabled>- Select -</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                        </select>
+                                        <input value="`+ bangunan.status_bangunan +`"  name="status_bangunan" type="text"
+                                        class="form-control form-control-sm mt-2"
+                                        placeholder="Insert here">
                                     </div>
                                 </div>
                             </div>
@@ -669,10 +631,6 @@
                     });
                 });
                 $('#id-sub-golongan2').val(data.pelanggan.id_detail_golongan);
-                $('#kecamatan-edit').val(data.pelanggan.kecamatan);
-                $('#kabupaten-edit').val(data.pelanggan.kabupaten);
-                $('#jenis-bangunan-edit').val(bangunan.jenis_bangunan);
-                $('#status-bangunan-edit').val(bangunan.status_bangunan);
                 $('#form-insert').attr('action', `{{route('daftar.update')}}`);
             });
         });

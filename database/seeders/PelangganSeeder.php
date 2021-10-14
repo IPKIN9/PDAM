@@ -27,7 +27,7 @@ class PelangganSeeder extends Seeder
             'updated_at' => $date,
         );
         BangunanModel::create($data);
-        $id_bangunan = BangunanModel::where('kode_bangunan')->value('id');
+        $id_bangunan = BangunanModel::where('kode_bangunan', $random)->value('id');
 
         $data2 = array(
             'id_bangunan' => $id_bangunan,

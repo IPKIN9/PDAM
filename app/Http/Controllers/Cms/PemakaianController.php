@@ -9,6 +9,7 @@ use App\Models\PemakaianModel;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Throwable;
 
 class PemakaianController extends Controller
@@ -16,7 +17,7 @@ class PemakaianController extends Controller
     public function index()
     {
         $data = array(
-            'all' =>PemakaianModel::all(),
+            'all' => PemakaianModel::all(),
             'user' => User::all(),
             'pelngn' => PelangganModel::all()
         );
@@ -25,17 +26,19 @@ class PemakaianController extends Controller
 
     public function insert(PemakaianRequest $request)
     {
+        $id_user = Auth::user()->id;
         $date = Carbon::now();
         $data = array(
-            'id_user' => $request->id_user,
+            'id_user' => $id_user,
             'id_pelanggan' => $request->id_pelanggan,
             'kode_pemakaian' => $request->kode_pemakaian,
+            'periode' => $request->periode,
             'jumlah_pemakaian' => $request->jumlah_pemakaian,
             'created_at' => $date,
             'updated_at' => $date,
         );
         try {
-           PemakaianModel::create($data);
+            PemakaianModel::create($data);
             return back()->with('status', 'Data berhasil ditambahkan');
         } catch (Throwable $e) {
             report($e);
@@ -45,7 +48,7 @@ class PemakaianController extends Controller
 
     public function edit($id)
     {
-        $result =PemakaianModel::where('id', $id)->first();
+        $result = PemakaianModel::where('id', $id)->first();
         return response()->json($result);
     }
 
@@ -54,14 +57,14 @@ class PemakaianController extends Controller
         $id = $request->id;
         $date = Carbon::now();
         $data = array(
-            'id_user' => $request->id_user,
             'id_pelanggan' => $request->id_pelanggan,
             'kode_pemakaian' => $request->kode_pemakaian,
+            'periode' => $request->periode,
             'jumlah_pemakaian' => $request->jumlah_pemakaian,
             'updated_at' => $date,
         );
         try {
-           PemakaianModel::where('id', $id)->update($data);
+            PemakaianModel::where('id', $id)->update($data);
             return back()->with('status', 'Data berhasil diubah');
         } catch (Throwable $e) {
             report($e);
@@ -71,7 +74,7 @@ class PemakaianController extends Controller
 
     public function delete($id)
     {
-       PemakaianModel::where('id', $id)->delete();
+        PemakaianModel::where('id', $id)->delete();
         return response()->json();
     }
 }

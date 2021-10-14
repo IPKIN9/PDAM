@@ -9,6 +9,8 @@ use App\Models\GolonganModel;
 use App\Models\PelangganModel;
 use App\Models\TentangKamiModel;
 use App\Http\Requests\PermintaanRequest;
+use App\Models\DetailGolonganModel;
+use App\Models\PemakaianModel;
 use App\Models\PengaduanModel;
 use App\Models\PermintaanModel;
 use Carbon\Carbon;
@@ -49,7 +51,7 @@ class HomeController extends Controller
         $pesan = 'Terima kasih telah melakukan permintaan pemasangan, nomor tiket anda: ' . $random;
         try {
             PermintaanModel::create($data);
-            return redirect('/#regist')->with('status', $pesan);
+            return redirect('/#regist')->with('status_permintaan', $pesan);
         } catch (Throwable $e) {
             report($e);
             return back()->with('error', $e);
@@ -70,10 +72,54 @@ class HomeController extends Controller
         $pesan = 'Terima kasih telah menghubungi kami, Pengaduan anda akan kami tindak lanjuti dalam 1 x 24 jam.';
         try {
             PengaduanModel::create($data);
-            return redirect('/#contact-trd')->with('status', $pesan);
+            return redirect('/#contact-trd')->with('status_pengaduan', $pesan);
         } catch (Throwable $e) {
             report($e);
             return back()->with('error', $e);
         }
+    }
+
+    public function check(Request $request)
+    {
+        $date = Carbon::now()->isoFormat('MMMM-Y');
+        $bangunan = BangunanModel::where('kode_bangunan', $request->kode)->value('id');
+        $pelanggan = PelangganModel::where([
+            ['nama', $request->nama],
+            ['id_bangunan', $bangunan]
+        ])->with('detail_role')->first();
+
+        if ($pelanggan == null) {
+            $result = "Tidak ditemukan";
+        } else {
+            $pemakaian = PemakaianModel::where([
+                ['id_pelanggan', $pelanggan->id],
+                ['periode', $date]
+            ])->first();
+            if ($pemakaian == null) {
+                $result = "null";
+            } else {
+                $detail = DetailGolonganModel::where('id', $pelanggan->id_detail_golongan)->first();
+                if ($pemakaian->jumlah_pemakaian <= 10) {
+                    $beban = $detail->biaya_beban;
+                    $blok1 = $detail->blok_1;
+                    $tarif = $blok1 * 10;
+                    $total = $tarif + $beban;
+
+                    $result = $total;
+                }
+                if ($pemakaian->jumlah_pemakaian > 10) {
+                    $beban = $detail->biaya_beban;
+                    $blok1 = $detail->blok_1;
+                    $blok2 = $detail->blok_2;
+                    $tarif1 = $blok1 * 10;
+                    $tarif2 = $blok2 * 11;
+                    $total = $tarif1 + $tarif2 + $beban;
+
+                    $result = $total;
+                }
+            }
+        }
+
+        return response()->json($result);
     }
 }

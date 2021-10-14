@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
@@ -62,7 +63,7 @@ https://templatemo.com/tm-565-onix-digital
                             <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
                             <li class="scroll-to-section"><a href="#services">Layanan</a></li>
                             <li class="scroll-to-section"><a href="#about">Tentang</a></li>
-                            <li class="scroll-to-section"><a href="#contact-sec">Pengaduan</a></li>
+                            <li class="scroll-to-section"><a href="#contact-trd">Pengaduan</a></li>
                             <li class="scroll-to-section">
                                 <div class="main-red-button-hover"><a href="#regist">DAFTAR</a></div>
                             </li>
@@ -284,9 +285,9 @@ https://templatemo.com/tm-565-onix-digital
                         <form id="contact" action="{{route('permintaan.insert')}}" method="post">
                             @csrf
                             <div class="row ml-5">
-                                @if (session('status'))
+                                @if (session('status_permintaan'))
                                 <div class="alert alert-primary">
-                                    {{ session('status') }}
+                                    {{ session('status_permintaan') }}
                                 </div>
                                 @endif
                                 <h4 class="mb-2">Formulir Pendaftaran</h4>
@@ -330,11 +331,12 @@ https://templatemo.com/tm-565-onix-digital
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1">
                                 <h2>Cek Informasi Tagihan</h2>
-                                <form id="subscribe" action="" method="get">
+                                <form id="subscribe" action="" method="GET">
+                                    @csrf
                                     <input type="text" name="nama" id="website" placeholder="Masukan Nama" required="">
-                                    <input type="text" name="kode_bangunan" id="email" pattern="[^ @]*@[^ @]*"
-                                        placeholder="Kode Bangunan" required="">
-                                    <button type="submit" id="form-submit" class="main-button ">Periksa</button>
+                                    <input type="text" name="kode_bangunan" id="email" placeholder="Kode Bangunan"
+                                        required="">
+                                    <button type="button" id="form-submit" class="main-button ">Periksa</button>
                                 </form>
                             </div>
                         </div>
@@ -374,9 +376,9 @@ https://templatemo.com/tm-565-onix-digital
                         @csrf
                         <div class="row">
                             <div class="col-lg-12">
-                                @if (session('status'))
+                                @if (session('status_pengaduan'))
                                 <div class="alert alert-primary">
-                                    {{ session('status') }}
+                                    {{ session('status_pengaduan') }}
                                 </div>
                                 @endif
                                 <fieldset>
@@ -531,6 +533,44 @@ https://templatemo.com/tm-565-onix-digital
             .innerHeight();
           $(".naccs ul").height(listItemHeight + "px");
         }
+    });
+    
+    $(document).ready(function()
+    {
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $(document).on('click', '#form-submit', function()
+        {
+            let nama = $('#website').val();
+            let kode = $('#email').val();
+
+            let data = {
+                nama: nama,
+                kode: kode
+            }
+            let url = "{{route('tagihan.check')}}";
+
+            $.ajax({
+            url: url,
+            data: data,
+            success: function(data)
+            {
+                if (data == "null") {
+                    alert('Tidak ada tagihan');
+                    location.reload();
+                }
+                else {
+                    alert('Tagihan anda '+data);
+                    location.reload();
+                }
+            }
+            });
+        });
     });
     </script>
 </body>

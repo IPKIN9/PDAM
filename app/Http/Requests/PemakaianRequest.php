@@ -14,9 +14,9 @@ class PemakaianRequest extends FormRequest
     public function rules()
     {
         return [
-            'id_user' => 'required',
             'id_pelanggan' => 'required',
             'kode_pemakaian' => 'required',
+            'periode' => 'required',
             'jumlah_pemakaian' => 'required',
         ];
     }
