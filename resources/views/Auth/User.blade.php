@@ -32,7 +32,7 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Karyawan</th>
+                                        <th>Nama Lengkap</th>
                                         <th>Username</th>
                                         <th>Password</th>
                                         <th>Aksi</th>
@@ -45,7 +45,7 @@
                                     @foreach ($data ['all'] as $d)
                                     <tr>
                                         <td>{{$no++}}</td>
-                                        <td>{{$d->karyawan_role->nama}}</td>
+                                        <td>{{$d->name}}</td>
                                         <td>{{$d->username}}</td>
                                         <td>{{$d->password}}</td>
                                         <td class="text-center" style="width: 100px;">
@@ -77,15 +77,10 @@
                                     <div class="row mt-4">
                                         <div class="col-md-6">
                                             <div class="form-group row">
-                                                <label class="col-sm-4 col-form-label">Karyawan</label>
+                                                <label class="col-sm-4 col-form-label">Nama Lengkap</label>
                                                 <div class="col-sm-8">
-                                                    <select class="form-control" name="id_karyawan">
-                                                        <option disabled selected>Pilih Karyawan</option>
-                                                        @foreach ($data ['kry'] as $d)
-                                                        <option value="{{$d->id}}">{{$d->nama}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                    @error('id_karyawan')
+                                                    <input type="text" class="form-control" name="name">
+                                                    @error('name')
                                                     <p class="text-danger">{{ $message }}</p>
                                                     @enderror
                                                 </div>
@@ -165,15 +160,10 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Karyawan</label>
+                            <label class="col-sm-4 col-form-label">Nama Lengkap</label>
                             <div class="col-sm-8">
-                                <input type="hidden" class="form-control" name="id" id="id" value="`+data.id+`">
-                                <select class="form-control" id="id_karyawan" name="id_karyawan">
-                                    <option disabled selected>Pilih Karyawan</option>
-                                    @foreach ($data ['kry'] as $d)
-                                    <option value="{{$d->id}}">{{$d->nama}}</option>
-                                    @endforeach
-                                </select>
+                                <input type="hidden" value="`+ data.id +`" name="id">
+                                <input type="text" class="form-control" name="name" id="name" value="`+data.name+`">
                             </div>
                         </div>
                     </div>
@@ -206,7 +196,6 @@
                 `);
                 $('#univModal').modal('show');
                 $('#form-insert').attr('action',`{{route('user.update')}}`);
-                $('#id_karyawan').val(data.id_karyawan);
             });
         });
 
