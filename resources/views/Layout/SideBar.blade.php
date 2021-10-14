@@ -6,6 +6,7 @@
                 <span class="menu-title">Dashboard</span>
             </a>
         </li>
+        @hasanyrole('super_admin')
         <li class="nav-item 
         {{ Route::is('golongan.index') ? 'active' : '' }}
         {{ Route::is('karyawan.index') ? 'active' : '' }}
@@ -29,16 +30,15 @@
                 </ul>
             </div>
         </li>
+        @else
+
+        @endhasanyrole
+
+        @hasanyrole('super_admin|admin')
         <li class="nav-item {{ Route::is('daftar.index') ? 'active' : '' }}">
             <a class="nav-link" href="{{route('daftar.index')}}">
                 <i class="icon-paper menu-icon"></i>
                 <span class="menu-title">Pemasangan Baru</span>
-            </a>
-        </li>
-        <li class="nav-item {{ Route::is('pemakaian.index') ? 'active' : '' }}">
-            <a class="nav-link" href="{{route('pemakaian.index')}}">
-                <i class="icon-paper menu-icon"></i>
-                <span class="menu-title">Pemakaian</span>
             </a>
         </li>
         <li class="nav-item {{ Route::is('tentangkami.index') ? 'active' : '' }}">
@@ -65,11 +65,20 @@
                 <span class="menu-title">Pembayaran</span>
             </a>
         </li>
-        <li class="nav-item {{ Route::is('contoh.index') ? 'active' : '' }}">
-            <a class="nav-link" href="{{route('contoh.index')}}">
-                <i class="icon-grid menu-icon"></i>
-                <span class="menu-title">Contoh</span>
+        @else
+
+        @endhasanyrole
+
+        @hasanyrole('super_admin|petugas')
+        <li class="nav-item {{ Route::is('pemakaian.index') ? 'active' : '' }}">
+            <a class="nav-link" href="{{route('pemakaian.index')}}">
+                <i class="icon-paper menu-icon"></i>
+                <span class="menu-title">Pemakaian</span>
             </a>
         </li>
+        @else
+
+        @endhasanyrole
+
     </ul>
 </nav>
