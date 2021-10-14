@@ -46,7 +46,7 @@
                 <ul class="navbar-nav navbar-nav-right">
                     <li class="nav-item nav-profile dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                            <img src="{{ asset('assets/images/faces/face28.jpg') }}" alt="profile" />
+                            <h4>{{Auth::user()->name}}</h4>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
                             aria-labelledby="profileDropdown">
@@ -54,7 +54,7 @@
                                 <i class="ti-settings text-primary"></i>
                                 Settings
                             </a>
-                            <a class="dropdown-item">
+                            <a href="{{route('logout')}}" class="dropdown-item">
                                 <i class="ti-power-off text-primary"></i>
                                 Logout
                             </a>
