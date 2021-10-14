@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Throwable;
+use PDF;
 
 class PendaftaranController extends Controller
 {
@@ -154,5 +155,12 @@ class PendaftaranController extends Controller
         PelangganModel::where('id', $id)->delete();
         BangunanModel::where('id', $where)->delete();
         return response()->json();
+    }
+
+    public function cetak($id)
+    {
+        $data = PelangganModel::where('id', $id)->first();
+        $pdf = PDF::loadView('Paper.Pernyataan', ['data' => $data])->setPaper('A4', 'potrait');;
+        return $pdf->download('pernyataan.pdf');
     }
 }

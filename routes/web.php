@@ -42,6 +42,7 @@ Route::prefix('/daftar')->group(function () {
     Route::get('getSpecData/{id}', [PendaftaranController::class, 'detail_edit']);
     Route::post('update', [PendaftaranController::class, 'update'])->name('daftar.update');
     Route::delete('deleteSpecData/{id}', [PendaftaranController::class, 'delete']);
+    Route::get('printDataPernyataan/{id}', [PendaftaranController::class, 'cetak']);
 });
 
 Route::prefix('/karyawan')->group(function () {
