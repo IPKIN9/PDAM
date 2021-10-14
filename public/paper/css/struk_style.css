@@ -1,0 +1,94 @@
+@media print {
+    @page {
+        size: landscape
+    }
+}
+
+body {
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+
+.page {
+    height: 400px;
+    width: 1200px;
+    border: 1px solid black;
+}
+
+.center {
+    margin: auto;
+    padding: 10px;
+}
+
+.column {
+    float: left;
+    width: 50%;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* batas */
+.row h1 {
+    font-size: 14pt;
+    font-weight: bold;
+    color: rgb(107, 107, 107);
+}
+
+h3 {
+    color: rgb(107, 107, 107);
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 1px;
+    width: 100%;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.mt-1 {
+    margin-top: 5px;
+}
+
+.mt-2 {
+    margin-top: 15px;
+}
+
+.mt-5 {
+    margin-top: 50px;
+}
+
+.mr-2 {
+    margin-right: 5px;
+}
+
+.col-2 {
+    float: left;
+    width: 12%;
+}
+
+.col-1 {
+    float: left;
+    width: 10%;
+}
+
+.col-4 {
+    float: left;
+    width: 30%;
+}
+
+.bold {
+    font-weight: bold;
+    color: rgb(107, 107, 107);
+}

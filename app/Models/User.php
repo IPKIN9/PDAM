@@ -13,13 +13,8 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $fillable = [
-        'id_karyawan',
+        'name',
         'username',
         'password',
     ];
-
-    public function karyawan_role()
-    {
-       return $this->belongsTo(KaryawanModel::class, 'id_karyawan');
-    }
 }
