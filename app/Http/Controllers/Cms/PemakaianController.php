@@ -59,7 +59,6 @@ class PemakaianController extends Controller
         $data = array(
             'id_pelanggan' => $request->id_pelanggan,
             'kode_pemakaian' => $request->kode_pemakaian,
-            'periode' => $request->periode,
             'jumlah_pemakaian' => $request->jumlah_pemakaian,
             'updated_at' => $date,
         );

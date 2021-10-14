@@ -16,7 +16,6 @@ class PemakaianRequest extends FormRequest
         return [
             'id_pelanggan' => 'required',
             'kode_pemakaian' => 'required',
-            'periode' => 'required',
             'jumlah_pemakaian' => 'required',
         ];
     }
