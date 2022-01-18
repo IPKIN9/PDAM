@@ -33,10 +33,6 @@ class HomeController extends Controller
         return view('Web.Home')->with('data', $data);
     }
 
-    public function tagihan()
-    {
-    }
-
     public function permintaan(PermintaanRequest $request)
     {
         $date = Carbon::now();
