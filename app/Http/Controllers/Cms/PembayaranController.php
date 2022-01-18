@@ -35,52 +35,46 @@ class PembayaranController extends Controller
                 ['periode', $periode]
             ]
         )->first();
+        switch ($pemakaian) {
+            case null:
+                return response()->json("null");
+                break;
 
-
-        $count = PembayaranModel::all()->count('id');
-        $bayar = PembayaranModel::where(
-            [
-                ['id_pelanggan', $id_pelanggan],
-                ['periode', $periode]
-            ]
-        )->value('telah_dibayar');
-
-        if ($pemakaian == null) {
-            return response()->json("null");
-        } else {
-            if ($count > 0) {
-                $result = array(
-                    'status' => $bayar
-                );
-                return response()->json($result);
-            } else {
-
-                if ($pemakaian->jumlah_pemakaian <= 10) {
-                    $tarif = $detail_golongan->detail_role->blok_1;
-                    $hasil = $tarif * 10;
+            default:
+                $bayar = PembayaranModel::where('id_pemakaian', $pemakaian->id)->value('telah_dibayar');
+                if ($bayar == 1) {
                     $result = array(
-                        'status' => $bayar,
-                        'pemakaian' => $pemakaian,
-                        'tarif' => $hasil,
-                        'adm' => $detail_golongan->detail_role->biaya_beban,
+                        'status' => $bayar
                     );
-                    // $result = $hasil;
-                } elseif ($pemakaian->jumlah_pemakaian > 10) {
-                    $tarif = $detail_golongan->detail_role->blok_1;
-                    $tarif2 = $detail_golongan->detail_role->blok_2;
-                    $a = $tarif * 10;
-                    $b = $tarif2 * 11;
-                    $hasil = $a + $b;
-                    $result = array(
-                        'status' => $bayar,
-                        'pemakaian' => $pemakaian,
-                        'tarif' => $hasil,
-                        'adm' => $detail_golongan->detail_role->biaya_beban,
-                    );
-                    // $result = $hasil;
+                    return response()->json($result);
+                } else {
+                    if ($pemakaian->jumlah_pemakaian <= 10) {
+                        $tarif = $detail_golongan->detail_role->blok_1;
+                        $hasil = $tarif * 10;
+                        $result = array(
+                            'status' => 0,
+                            'pemakaian' => $pemakaian,
+                            'tarif' => $hasil,
+                            'adm' => $detail_golongan->detail_role->biaya_beban,
+                        );
+                        // $result = $hasil;
+                    } elseif ($pemakaian->jumlah_pemakaian > 10) {
+                        $tarif = $detail_golongan->detail_role->blok_1;
+                        $tarif2 = $detail_golongan->detail_role->blok_2;
+                        $a = $tarif * 10;
+                        $b = $tarif2 * 11;
+                        $hasil = $a + $b;
+                        $result = array(
+                            'status' => 0,
+                            'pemakaian' => $pemakaian,
+                            'tarif' => $hasil,
+                            'adm' => $detail_golongan->detail_role->biaya_beban,
+                        );
+                        // $result = $hasil;
+                    }
+                    return response()->json($result);
                 }
-                return response()->json($result);
-            }
+                break;
         }
     }
 

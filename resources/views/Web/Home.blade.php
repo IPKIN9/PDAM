@@ -97,11 +97,13 @@ https://templatemo.com/tm-565-onix-digital
                                             <a href="#regist" style="color: white;">Pemasangan Baru</a>
                                         </div>
                                         <div class="call-button">
-                                            <a href="#"><i class="fa fa-phone"></i> @if ($data['tentang'] == null)
-                                                Data kosong
+                                            <a href="#"><i class="fa fa-phone"></i>
+                                                @if ($data['tentang'] == null)
+                                                    Data kosong
                                                 @else
-                                                {{$data['tentang']->hp}}
-                                                @endif</a>
+                                                    {{ $data['tentang']->hp }}
+                                                @endif
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -134,19 +136,22 @@ https://templatemo.com/tm-565-onix-digital
                     <div class="owl-carousel owl-services">
                         <div class="item">
                             <h4>Paket Lengkap dan Murah</h4>
-                            <div class="icon"><img src="{{ asset('web/assets/images/service-icon-01.png') }}" alt="">
+                            <div class="icon"><img
+                                    src="{{ asset('web/assets/images/service-icon-01.png') }}" alt="">
                             </div>
                             <p>Berbagai paket yang tersedia dengan harga yang terjangkau</p>
                         </div>
                         <div class="item">
                             <h4>Pelayanan Lebih Cepat</h4>
-                            <div class="icon"><img src="{{ asset('web/assets/images/service-icon-02.png') }}" alt="">
+                            <div class="icon"><img
+                                    src="{{ asset('web/assets/images/service-icon-02.png') }}" alt="">
                             </div>
                             <p>Pelanggan adalah hal yang utama. Kami memprioritaskan pelanggan</p>
                         </div>
                         <div class="item">
                             <h4>Layanan Dengan Website</h4>
-                            <div class="icon"><img src="{{ asset('web/assets/images/service-icon-03.png') }}" alt="">
+                            <div class="icon"><img
+                                    src="{{ asset('web/assets/images/service-icon-03.png') }}" alt="">
                             </div>
                             <p>Pelayanan melalui website kini telah dibuka. Daftar sekarang</p>
                         </div>
@@ -168,11 +173,13 @@ https://templatemo.com/tm-565-onix-digital
                 <div class="col-lg-6">
                     <div class="section-heading">
                         <h2>Tetap sehat dengan memperhatikan penggunaan <em>AIR</em> <span>BERSIH</span></h2>
-                        <p>@if ($data['tentang'] == null)
-                            Data kosong
+                        <p>
+                            @if ($data['tentang'] == null)
+                                Data kosong
                             @else
-                            {{$data['tentang']->des}}
-                            @endif.</p>
+                                {{ $data['tentang']->des }}
+                            @endif.
+                        </p>
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="fact-item">
@@ -181,9 +188,9 @@ https://templatemo.com/tm-565-onix-digital
                                             <img src="{{ asset('web/assets/images/service-icon-01.png') }}" alt="">
                                         </div>
                                         @if ($data['c_bangunan'] == null)
-                                        <div class="count-digit">0</div>
+                                            <div class="count-digit">0</div>
                                         @else
-                                        <div class="count-digit">{{$data['c_bangunan']}}</div>
+                                            <div class="count-digit">{{ $data['c_bangunan'] }}</div>
                                         @endif
                                         <div class="count-title">Rumah</div>
                                         <p>Jumlah rumah yang menggunakan PDAM</p>
@@ -197,9 +204,9 @@ https://templatemo.com/tm-565-onix-digital
                                             <img src="{{ asset('web/assets/images/service-icon-03.png') }}" alt="">
                                         </div>
                                         @if ($data['c_pelanggan'] == null)
-                                        <div class="count-digit">0</div>
+                                            <div class="count-digit">0</div>
                                         @else
-                                        <div class="count-digit">{{$data['c_pelanggan']}}</div>
+                                            <div class="count-digit">{{ $data['c_pelanggan'] }}</div>
                                         @endif
                                         <div class="count-title">Pelanggan</div>
                                         <p>Jumlah warga yang berlangganan.</p>
@@ -282,13 +289,13 @@ https://templatemo.com/tm-565-onix-digital
                 <div class="row">
                     <div class="col-lg-1"></div>
                     <div class="col-lg-11">
-                        <form id="contact" action="{{route('permintaan.insert')}}" method="post">
+                        <form id="contact" action="{{ route('permintaan.insert') }}" method="post">
                             @csrf
                             <div class="row ml-5">
                                 @if (session('status_permintaan'))
-                                <div class="alert alert-primary">
-                                    {{ session('status_permintaan') }}
-                                </div>
+                                    <div class="alert alert-primary">
+                                        {{ session('status_permintaan') }}
+                                    </div>
                                 @endif
                                 <h4 class="mb-2">Formulir Pendaftaran</h4>
                                 <div class="col-lg-12">
@@ -296,7 +303,7 @@ https://templatemo.com/tm-565-onix-digital
                                         <input type="name" name="nama" id="nama" placeholder="Nama Lengkap"
                                             autocomplete="off" required>
                                         @error('nama')
-                                        <p class="text-danger">{{ $message }}</p>
+                                            <p class="text-danger">{{ $message }}</p>
                                         @enderror
                                     </fieldset>
                                 </div>
@@ -305,13 +312,13 @@ https://templatemo.com/tm-565-onix-digital
                                         <input type="text" name="alamat" id="alamat" placeholder="Alamat"
                                             autocomplete="off" required>
                                         @error('alamat')
-                                        <p class="text-danger">{{ $message }}</p>
+                                            <p class="text-danger">{{ $message }}</p>
                                         @enderror
                                     </fieldset>
                                 </div>
                                 <div class="col-lg-12">
                                     <fieldset>
-                                        <button type="submit" id="form-submit" class="main-button">Kirim
+                                        <button type="submit" id="" class="main-button">Kirim
                                             Permintaan</button>
                                     </fieldset>
                                 </div>
@@ -360,32 +367,32 @@ https://templatemo.com/tm-565-onix-digital
                         </div>
                         <div class="info">
                             @if ($data['tentang'] == null)
-                            <span><i class="fa fa-phone"></i> <a href="#">Whatsapp<br></a></span>
-                            <span><i class="fa fa-envelope"></i> <a href="#">Email<br></a></span>
+                                <span><i class="fa fa-phone"></i> <a href="#">Whatsapp<br></a></span>
+                                <span><i class="fa fa-envelope"></i> <a href="#">Email<br></a></span>
                             @else
-                            <span><i class="fa fa-phone"></i> <a
-                                    href="#">Whatsapp<br>{{$data['tentang']->wa}}</a></span>
-                            <span><i class="fa fa-envelope"></i> <a
-                                    href="#">Email<br>{{$data['tentang']->email}}</a></span>
+                                <span><i class="fa fa-phone"></i> <a
+                                        href="#">Whatsapp<br>{{ $data['tentang']->wa }}</a></span>
+                                <span><i class="fa fa-envelope"></i> <a
+                                        href="#">Email<br>{{ $data['tentang']->email }}</a></span>
                             @endif
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-5 align-self-center">
-                    <form id="contact" action="{{route('pengaduan.insert')}}" method="post">
+                    <form id="contact" action="{{ route('pengaduan.insert') }}" method="post">
                         @csrf
                         <div class="row">
                             <div class="col-lg-12">
                                 @if (session('status_pengaduan'))
-                                <div class="alert alert-primary">
-                                    {{ session('status_pengaduan') }}
-                                </div>
+                                    <div class="alert alert-primary">
+                                        {{ session('status_pengaduan') }}
+                                    </div>
                                 @endif
                                 <fieldset>
                                     <input type="text" name="nama" placeholder="Nama Lengkap" autocomplete="off"
                                         required>
                                     @error('nama')
-                                    <p class="text-danger">{{ $message }}</p>
+                                        <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </fieldset>
                             </div>
@@ -394,7 +401,7 @@ https://templatemo.com/tm-565-onix-digital
                                     <input type="text" name="no_telpon" placeholder="Nomor Telepon" autocomplete="off"
                                         required>
                                     @error('no_telpon')
-                                    <p class="text-danger">{{ $message }}</p>
+                                        <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </fieldset>
                             </div>
@@ -424,7 +431,7 @@ https://templatemo.com/tm-565-onix-digital
                                         <option value="Valve">Valve</option>
                                         <option value="Pipa dinas bocor">Pipa dinas bocor</option>
                                         @error('kerusakan')
-                                        <p class="text-danger">{{ $message }}</p>
+                                            <p class="text-danger">{{ $message }}</p>
                                         @enderror
                                     </select>
                                 </fieldset>
@@ -434,13 +441,14 @@ https://templatemo.com/tm-565-onix-digital
                                     <p>Keluhan Anda</p>
                                     <textarea name="keterangan" id="keterangan" cols="30" rows="10"></textarea>
                                     @error('keterangan')
-                                    <p class="text-danger">{{ $message }}</p>
+                                        <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </fieldset>
                             </div>
                             <div class="col-lg-12">
                                 <fieldset>
-                                    <button type="submit" id="form-submit" class="main-button">Kirim Formulir</button>
+                                    <button type="submit" id="" class="main-button">Kirim
+                                        Formulir</button>
                                 </fieldset>
                             </div>
                         </div>
@@ -469,11 +477,13 @@ https://templatemo.com/tm-565-onix-digital
                             <a href="#"><img src="{{ asset('web/assets/images/logo.png') }}"
                                     alt="Onix Digital TemplateMo"></a>
                         </div>
-                        <a href="#">@if ($data['tentang'] == null)
-                            Data kosong
+                        <a href="#">
+                            @if ($data['tentang'] == null)
+                                Data kosong
                             @else
-                            {{$data['tentang']->email}}
-                            @endif</a>
+                                {{ $data['tentang']->email }}
+                            @endif
+                        </a>
                         <ul>
                             <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                             <li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -518,60 +528,56 @@ https://templatemo.com/tm-565-onix-digital
 
     <script>
         // Acc
-    $(document).on("click", ".naccs .menu div", function() {
-      var numberIndex = $(this).index();
+        $(document).on("click", ".naccs .menu div", function() {
+            var numberIndex = $(this).index();
 
-      if (!$(this).is("active")) {
-          $(".naccs .menu div").removeClass("active");
-          $(".naccs ul li").removeClass("active");
+            if (!$(this).is("active")) {
+                $(".naccs .menu div").removeClass("active");
+                $(".naccs ul li").removeClass("active");
 
-          $(this).addClass("active");
-          $(".naccs ul").find("li:eq(" + numberIndex + ")").addClass("active");
+                $(this).addClass("active");
+                $(".naccs ul").find("li:eq(" + numberIndex + ")").addClass("active");
 
-          var listItemHeight = $(".naccs ul")
-            .find("li:eq(" + numberIndex + ")")
-            .innerHeight();
-          $(".naccs ul").height(listItemHeight + "px");
-        }
-    });
-    
-    $(document).ready(function()
-    {
-
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                var listItemHeight = $(".naccs ul")
+                    .find("li:eq(" + numberIndex + ")")
+                    .innerHeight();
+                $(".naccs ul").height(listItemHeight + "px");
             }
         });
 
-        $(document).on('click', '#form-submit', function()
-        {
-            let nama = $('#website').val();
-            let kode = $('#email').val();
+        $(document).ready(function() {
 
-            let data = {
-                nama: nama,
-                kode: kode
-            }
-            let url = "{{route('tagihan.check')}}";
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
 
-            $.ajax({
-            url: url,
-            data: data,
-            success: function(data)
-            {
-                if (data == "null") {
-                    alert('Tidak ada tagihan');
-                    location.reload();
+            $(document).on('click', '#form-submit', function() {
+                let nama = $('#website').val();
+                let kode = $('#email').val();
+
+                let data = {
+                    nama: nama,
+                    kode: kode
                 }
-                else {
-                    alert('Tagihan anda '+data);
-                    location.reload();
-                }
-            }
+                let url = "{{ route('tagihan.check') }}";
+
+                $.ajax({
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        if (data == "null") {
+                            alert('Tidak ada tagihan');
+                            location.reload();
+                        } else {
+                            alert('Tagihan anda ' + data);
+                            location.reload();
+                        }
+                    }
+                });
             });
         });
-    });
     </script>
 </body>
 

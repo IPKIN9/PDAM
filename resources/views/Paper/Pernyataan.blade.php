@@ -19,12 +19,17 @@
             <tr>
                 <td style="width: 30%;">Nama</td>
                 <td style="width: 5%;">:</td>
-                <td style="width: 65%;">{{$data->nama}}</td>
+                <td style="width: 65%;">{{ $data->nama }}</td>
             </tr>
             <tr>
                 <td style="width: 30%; vertical-align: top;">Alamat</td>
                 <td style="width: 5%; vertical-align: top;">:</td>
-                <td style="width: 65%;">{{$data->alamat}}</td>
+                <td style="width: 65%;">{{ $data->alamat }}</td>
+            </tr>
+            <tr>
+                <td style="width: 30%; vertical-align: top;">Kode Bangunan</td>
+                <td style="width: 5%; vertical-align: top;">:</td>
+                <td style="width: 65%;">{{ $data->bangunan_role->kode_bangunan }}</td>
             </tr>
         </table>
 
@@ -52,9 +57,9 @@
             air.
         </p>
 
-        <div style="width: 40%; text-align: left; float: right;">Ogogamas, {{date('d-M-Y')}}</div><br>
+        <div style="width: 40%; text-align: left; float: right;">Ogogamas, {{ date('d-M-Y') }}</div><br>
         <div style="width: 40%; text-align: left; float: right;">Yang bertanda tangan,</div><br><br><br><br><br>
-        <div style="width: 40%; text-align: left; float: right;">{{$data->nama}}</div>
+        <div style="width: 40%; text-align: left; float: right;">{{ $data->nama }}</div>
 
     </div>
 </body>
